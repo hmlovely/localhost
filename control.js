@@ -15,9 +15,11 @@ var route = require('./route'),
 
 exports.init = function (req, res) {
     var root = route.maps[req.headers.host];
-    root += decodeURIComponent(req.url.replace(/\//gi, '/'));
+    root += (req.url);
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
+    root = decodeURIComponent(root);
+    console.log('root:\t' + root);
     if (path.existsSync(root)) {
         fs.stat(root, function (err, stats) {
             //如果是目录，则读取目录的所有文件
@@ -27,7 +29,7 @@ exports.init = function (req, res) {
                     if (files.length > 0) {
                         res.write('<ul>');
                         files.forEach(function (item) {
-                            res.write('<li><a href="' + (req.url === '/' ? '' : req.url) + '/' + item + '">' + item + '</a></li>');
+                            res.write('<li><a href="' + (req.url === '/' ? '' : req.url) + '/' + encodeURIComponent(item) + '">' + item + '</a></li>');
                         })
                         res.write('</ul>');
                         res.end();
@@ -37,8 +39,8 @@ exports.init = function (req, res) {
                 })
 
             }
-            //if是文件则读取文件内容
-            if (stats.isFile()) {
+            //如果是文件则读取文件内容
+            else if (stats.isFile()) {
                 fs.readFile(root, function (err, data) {
                     if (!err) {
                         console.log(mime.maps[extname] ? mime.maps[extname] : 'object/stream')
@@ -48,6 +50,9 @@ exports.init = function (req, res) {
                         res.end(err.toString());
                     }
                 });
+            } else {
+                res.writeHead(200, {'Content-type':'text/plain"'});
+                res.end('unsupport type of file.');
             }
 
         })

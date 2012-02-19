@@ -28,9 +28,11 @@ exports.init = function (req, res) {
                     res.writeHead(200, {'Content-type':'text/html; charset="utf-8"'});
                     if (files.length > 0) {
                         res.write('<ul>');
+                        var _path = (req.url === '/' ? '' : req.url);
+                        res.write('<li><a href="' + path.normalize(_path + '/..') + '">.. </a></li>');
                         files.forEach(function (item) {
                             var _stats = fs.statSync(root + '/' + item);
-                            res.write('<li><a href="' + (req.url === '/' ? '' : req.url) + '/' + encodeURIComponent(item) + '">【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item + '</a></li>');
+                            res.write('<li><a href="' + _path + '/' + encodeURIComponent(item) + '">【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item + '</a></li>');
                         });
                         res.write('</ul>');
                         res.end();

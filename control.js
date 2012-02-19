@@ -29,8 +29,9 @@ exports.init = function (req, res) {
                     if (files.length > 0) {
                         res.write('<ul>');
                         files.forEach(function (item) {
-                            res.write('<li><a href="' + (req.url === '/' ? '' : req.url) + '/' + encodeURIComponent(item) + '">' + item + '</a></li>');
-                        })
+                            var _stats = fs.statSync(root + '/' + item);
+                            res.write('<li><a href="' + (req.url === '/' ? '' : req.url) + '/' + encodeURIComponent(item) + '">【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item + '</a></li>');
+                        });
                         res.write('</ul>');
                         res.end();
                     } else {

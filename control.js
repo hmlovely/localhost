@@ -24,12 +24,16 @@ exports.init = function (req, res) {
             if (stats.isDirectory()) {
                 fs.readdir(root, function (err, files) {
                     res.writeHead(200, {'Content-type':'text/html; charset="utf-8"'});
-                    res.write('<ul>');
-                    files.forEach(function (item) {
-                        res.write('<li><a href="' + (req.url === '/' ? '' : req.url) + '/' + item + '">' + item + '</a></li>');
-                    })
-                    res.write('</ul>');
-                    res.end();
+                    if (files.length > 0) {
+                        res.write('<ul>');
+                        files.forEach(function (item) {
+                            res.write('<li><a href="' + (req.url === '/' ? '' : req.url) + '/' + item + '">' + item + '</a></li>');
+                        })
+                        res.write('</ul>');
+                        res.end();
+                    } else {
+                        res.end('<font color="red">' + root + '</font>' + ' is empty!');
+                    }
                 })
 
             }

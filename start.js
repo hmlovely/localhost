@@ -14,3 +14,7 @@ var server = http.createServer(function (req, res) {
 });
 
 server.listen(80);
+
+setInterval(function () {
+    console.log(new Date().now);
+}, 10000)

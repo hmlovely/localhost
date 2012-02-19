@@ -47,6 +47,9 @@ exports.init = function (req, res) {
             }
 
         })
+    } else {
+        res.writeHead(404, {'Content-type':'text/html; charset="utf-8"'});
+        res.end('<h1>404!</h1><p><font color="red">' + root + '</font> not exist on the system!</p>');
     }
 };
 

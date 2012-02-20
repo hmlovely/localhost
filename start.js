@@ -13,4 +13,4 @@ var server = http.createServer(function (req, res) {
     require('./control').init(req, res);
 });
 
-server.listen(80);
+server.listen(8000);

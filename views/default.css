@@ -1,3 +1,39 @@
-body {
-    border: solid 1px red;
+body, p, ul, li, h1 {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+ul {
+    padding: 1em;
+    line-height: 150%;
+}
+
+a {
+    text-decoration: none;
+    color: #00a;
+    display: block;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+li:nth-child(2n) {
+    background: #f6f6f6;
+    border-radius: 2px;
+}
+
+a:hover {
+    background: #afa;
+}
+
+body, h1 {
+    font-family: tahoma, verdana, sans-serif;
+}
+
+#container {
+    margin: 1em 0 0 1em;
+    width: 70%;
 }

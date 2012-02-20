@@ -1,18 +1,14 @@
 !!! 5
 html(lang="en")
-  head
-    title=pageTitle
-    script(type='text/javascript')
-      if (foo) {
-         bar()
-      }
-      style
-        include ./views/default.css
-  body
-    h1=pageTitle
-    #container
-      ul
-          - files.forEach(function(item){
-            li
-                a(href=item.href)=item.text
-          - })
+    head
+        title=pageTitle
+        style=defaultCSS
+    body
+        #container
+            h1=pageTitle
+            ul
+              - list.forEach(function(item){
+                li
+                    a(href=item.href)=item.text
+              - })
+        script=defaultJS

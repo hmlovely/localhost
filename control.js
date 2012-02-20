@@ -44,10 +44,10 @@ exports.init = function (req, res) {
                             //在数组最前端，增加一个元素，用以返回上一层目录
                             data.list.unshift({
                                 href:path.normalize(_path + '/..'),
-                                text:"返回上一级目录",
+                                text:"返回上一级目录"
                             });
                             //设置页面标题
-                            data['pageTitle'] = path.normalize(root);
+                            data['pageTitle'] = decodeURIComponent(path.normalize(_path));
                             //设置样式
                             data['defaultCSS'] = fs.readFileSync('./views/default.css');
                             data['defaultJS'] = fs.readFileSync('./views/default.js');

@@ -9,7 +9,7 @@
 "use strict";
 var route = require('./route'),
     fs = require('fs'),
-    // jade = require('jade'),
+    jade = require('jade'),
     path = require('path'),
     mime = require('./mime');
 
@@ -26,19 +26,29 @@ exports.init = function (req, res) {
             if (stats.isDirectory()) {
                 fs.readdir(root, function (err, files) {
                     res.writeHead(200, {'Content-type':'text/html; charset="utf-8"'});
-                    if (files.length > 0) {
-                        res.write('<ul>');
-                        var _path = (req.url === '/' ? '' : req.url);
-                        res.write('<li><a href="' + path.normalize(_path + '/..') + '">.. </a></li>');
-                        files.forEach(function (item) {
+                    var _path = (req.url === '/' ? '' : req.url),
+                        data = { };
+                    files.forEach(function (item, i) {
+                        try {
                             var _stats = fs.statSync(root + '/' + item);
-                            res.write('<li><a href="' + _path + '/' + encodeURIComponent(item) + '">【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item + '</a></li>');
-                        });
-                        res.write('</ul>');
-                        res.end();
-                    } else {
-                        res.end('<font color="red">' + root + '</font>' + ' is empty!');
-                    }
+                            files[i] = {
+                                href:_path + '/' + encodeURIComponent(item),
+                                text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
+                                isDirecotory:_stats.isDirectory()
+                            }
+                        } catch (e) {
+                        }
+                    });
+                    //在数组最前端，增加一个元素，用以返回上一层目录
+                    files.unshift({
+                        href:path.normalize(_path + '/..'),
+                        text:"返回上一级目录",
+                    });
+                    //设置页面标题
+                    data['pageTitle'] = path.normalize(root);
+                    data.files = files;
+                    var fn = jade.compile(fs.readFileSync('./views/main-content.jade'));
+                    res.end(fn(data));
                 })
 
             }
@@ -64,10 +74,3 @@ exports.init = function (req, res) {
         res.end('<h1>404!</h1><p><font color="red">' + root + '</font> not exist on the system!</p>');
     }
 };
-
-
-/*var obj = {
- 'fileList':files
- };
- obj['pageTitle'] = root;
- var fn = jade.compile(fs.readFileSync('./views/main-content.jade'));*/

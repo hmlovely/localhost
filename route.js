@@ -9,7 +9,7 @@
 "use strict";
 
 exports.maps = {
-    "localhost":'/Users/songsong',
+    "localhost":'D:\\',
     "hm":"F:\\",
     "localh2ost":"C:\\",
     "localh3ost":"C:\\",

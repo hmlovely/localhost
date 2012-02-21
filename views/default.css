@@ -14,7 +14,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: #00a;
+    color: blue;
     display: block;
     border-radius: 3px;
     padding: 2px;
@@ -27,6 +27,11 @@ li:nth-child(2n) {
 
 a:hover {
     background: #afa;
+}
+
+h1 {
+    font-size: 23px;
+    color: #444;
 }
 
 body, h1 {

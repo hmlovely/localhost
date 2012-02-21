@@ -43,8 +43,9 @@ exports.init = function (req, res) {
                             //在数组最前端，增加一个元素，用以返回上一层目录
                             data.list.unshift({
                                 //由于window和unix操作系统，路径的 / 和 \意义不一样，所以这里需要对win进行处理
-                                href:path.normalize(_path + '/..').replace(/\\/, '/'),
-                                text:"返回上一级目录"
+                                href:path.normalize(_path + '/..').replace(/\\/gi, '/'),
+                                text:"Parent Directory",
+                                isDirecotory:true
                             });
                             //设置页面标题
                             data['pageTitle'] = decodeURIComponent(path.normalize(_path));

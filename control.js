@@ -18,7 +18,6 @@ exports.init = function (req, res) {
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
     root = decodeURIComponent(root);
-    console.log('root:\t' + root);
     if (path.existsSync(root)) {
         fs.stat(root, function (err, stats) {
                 //如果是目录，则读取目录的所有文件
@@ -43,7 +42,8 @@ exports.init = function (req, res) {
                             });
                             //在数组最前端，增加一个元素，用以返回上一层目录
                             data.list.unshift({
-                                href:path.normalize(_path + '/..'),
+                                //由于window和unix操作系统，路径的 / 和 \意义不一样，所以这里需要对win进行处理
+                                href:path.normalize(_path + '/..').replace(/\\/, '/'),
                                 text:"返回上一级目录"
                             });
                             //设置页面标题

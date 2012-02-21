@@ -4,9 +4,16 @@ html(lang="en")
         title=pageTitle
         style=defaultCSS
     body
+        h1 Path:
+            - path.forEach(function(item){
+                - if(item.href!==undefined)
+                    a(href="/"+item.href)=item.text
+                    /
+                - else
+                    span=item.text
+
+            - })
         #container
-            h1 Index of
-                span=pageTitle
             ul
               - list.forEach(function(item){
                 li

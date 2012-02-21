@@ -41,17 +41,44 @@ exports.init = function (req, res) {
                                 }
                             });
                             //在数组最前端，增加一个元素，用以返回上一层目录
+                            //todo:待优化，判断当前是否已经在顶层，如果是，则不显示 Parent Direcotry
                             data.list.unshift({
                                 //由于window和unix操作系统，路径的 / 和 \意义不一样，所以这里需要对win进行处理
                                 href:path.normalize(_path + '/..').replace(/\\/gi, '/'),
                                 text:"Parent Directory",
                                 isDirecotory:true
                             });
-                            //设置页面标题
+                            //页面标题
                             data['pageTitle'] = decodeURIComponent(path.normalize(_path));
-                            //设置样式
+                            //样式
                             data['defaultCSS'] = fs.readFileSync('./views/default.css');
+                            //JS
                             data['defaultJS'] = fs.readFileSync('./views/default.js');
+                            //URL路径
+                            //todo:data.path中出现了两个斜杠
+                            data['path'] = data['pageTitle'].split('\\');
+                            data['path'] = data['path'].map(function (item, i) {
+                                if (i > 0) {
+                                    //判断是否为最后一个元素
+                                    if (i < data['path'].length - 1) {
+                                        return {
+                                            text:item,
+                                            href:data['path'].slice(1, i + 1).join('/')
+                                        }
+                                        //否则，最后一个元素是不需要链接的
+                                    } else {
+                                        return {
+                                            text:item
+                                        }
+                                    }
+                                } else {
+                                    return {
+                                        text:'Root',
+                                        href:''
+                                    }
+                                }
+                            });
+
                             var fn = jade.compile(fs.readFileSync('./views/main-content.jade'));
                             res.end(fn(data));
                         }
@@ -82,5 +109,4 @@ exports.init = function (req, res) {
         res.writeHead(404, {'Content-type':'text/html; charset="utf-8"'});
         res.end('<h1>404!</h1><p><font color="red">' + root + '</font> not exist on the system!</p>');
     }
-}
-;
+};

@@ -56,14 +56,15 @@ exports.init = function (req, res) {
                             data['defaultJS'] = fs.readFileSync('./views/default.js');
                             //URL路径
                             //todo:data.path中出现了两个斜杠
-                            data['path'] = data['pageTitle'].replace(/\\/gi, '/').split('/');
+                            data['path'] = data['pageTitle'].split('/');
+                            console.log(data.path)
                             data['path'] = data['path'].map(function (item, i) {
                                 if (i > 0) {
                                     //判断是否为最后一个元素
                                     if (i < data['path'].length - 1) {
                                         return {
                                             text:item,
-                                            href:data['path'].slice(1, i + 1).join('/')
+                                            href:encodeURIComponent(data['path'].slice(1, i + 1).join('/'))
                                         }
                                         //否则，最后一个元素是不需要链接的
                                     } else {
@@ -78,6 +79,10 @@ exports.init = function (req, res) {
                                     }
                                 }
                             });
+
+                            if (data.path[data.path.length - 2]) {
+                                data.list[0].href = '/' + data.path[data.path.length - 2].href;
+                            }
 
                             var fn = jade.compile(fs.readFileSync('./views/main-content.jade'));
                             res.end(fn(data));

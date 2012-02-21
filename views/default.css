@@ -8,7 +8,7 @@ h1 {
     color: #444;
     border-bottom: dashed 1px #aaa;
     padding-bottom: 1em;
-    margin: 1em;
+    margin: 1em 1em 0 1em;
 }
 
 h1 a {
@@ -28,7 +28,7 @@ ul, li {
 
 ul {
     padding: 1em;
-    line-height: 150%;
+    line-height: 180%;
 }
 
 #container a {
@@ -53,7 +53,7 @@ body, h1 {
 }
 
 #container {
-    margin: 0 0 0 1em;
+    margin-left: 1em;
     width: 70%;
     font-size: 14px;
 }

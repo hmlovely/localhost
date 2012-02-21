@@ -56,7 +56,7 @@ exports.init = function (req, res) {
                             data['defaultJS'] = fs.readFileSync('./views/default.js');
                             //URL路径
                             //todo:data.path中出现了两个斜杠
-                            data['path'] = data['pageTitle'].split('\\');
+                            data['path'] = data['pageTitle'].replace(/\\/gi, '/').split('/');
                             data['path'] = data['path'].map(function (item, i) {
                                 if (i > 0) {
                                     //判断是否为最后一个元素

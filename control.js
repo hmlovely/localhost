@@ -11,7 +11,10 @@ var route = require('./route'),
     fs = require('fs'),
     jade = require('jade'),
     path = require('path'),
-    mime = require('./mime');
+    mime = require('./mime'),
+    os = require('os'),
+    isWin = /(Windows)/i.test(os.type());
+
 exports.init = function (req, res) {
     var root = route.maps[req.headers.host];
     root += (req.url);
@@ -55,9 +58,13 @@ exports.init = function (req, res) {
                             //JS
                             data['defaultJS'] = fs.readFileSync('./views/default.js');
                             //URL路径
-                            //todo:data.path中出现了两个斜杠
-                            data['path'] = data['pageTitle'].split('/');
-                            console.log(data.path)
+                            if (isWin) {
+                                data['path'] = data['pageTitle'].split('\\');
+                            } else {
+                                data['path'] = data['pageTitle'].split('/');
+                            }
+
+                            console.log('data path:' + data.path)
                             data['path'] = data['path'].map(function (item, i) {
                                 if (i > 0) {
                                     //判断是否为最后一个元素

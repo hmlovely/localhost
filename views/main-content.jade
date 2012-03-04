@@ -2,17 +2,21 @@
 html(lang="en")
     head
         title=pageTitle
-        style=defaultCSS
+        style
+            !{defaultCSS}
     body
-        h1 Path:
-            - path.forEach(function(item){
-                - if(item.href!==undefined)
-                    a(href="/"+item.href)=item.text
-                    /
-                - else
-                    span=item.text
+        div(class="box")
+            h1 Path:
+                - path.forEach(function(item){
+                    - if(item.href!==undefined)
+                        a(href="/"+item.href)=item.text
+                        /
+                    - else
+                        span=item.text
 
-            - })
+                - })
+            <input id="search_input" class="txt" type="text" name="q" style="display: inline;">
+            <input id="search_engine_button" class="btn" type="submit" value="搜索" style="display: inline;">
         #container
             ul
               - list.forEach(function(item){

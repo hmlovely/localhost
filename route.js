@@ -8,13 +8,16 @@
 
 "use strict";
 
+
 exports.maps = {
-    "localhost:8000":'D:\\',
+    "localhost":'D:\\',
     "hm":"F:\\",
     "localh2ost":"C:\\",
     "localh3ost":"C:\\",
-    "localho4st":"C:\\"
+    "localho4st":"C:\\",
+    "static":__dirname + "\\views"
 };
+
 
 exports.init = function (req, res) {
 

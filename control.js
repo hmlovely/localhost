@@ -17,6 +17,7 @@ var route = require('./route'),
 
 exports.init = function (req, res) {
     var root = route.maps[req.headers.host];
+    console.log(route.maps)
     root += (req.url);
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
@@ -54,7 +55,7 @@ exports.init = function (req, res) {
                             //页面标题
                             data['pageTitle'] = decodeURIComponent(path.normalize(_path));
                             //样式
-                            data['defaultCSS'] = fs.readFileSync('./views/default.css');
+                            data['defaultCSS'] = fs.readFileSync('./views/page.css');
                             //JS
                             data['defaultJS'] = fs.readFileSync('./views/default.js');
                             //URL路径

@@ -7,4 +7,11 @@
  */
 
 
-$(document.body).append('<p style="text-align: center; background: #eee;">此内容来自global.js中！</p>');
+
+
+$(document.body).append('<p style="text-align: center; background: #eee;" id="testContainer">此内容来自global.js中！</p>');
+$('#testContainer').css('opacity', '0').animate({
+    padding:'20px',
+    'margin-top':'40px',
+    opacity:1
+}, 300);

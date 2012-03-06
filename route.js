@@ -10,15 +10,22 @@
 
 
 exports.maps = {
-    "localhost":'D:\\',
     "hm":"F:\\",
     "localh2ost":"C:\\",
     "localh3ost":"C:\\",
     "localho4st":"C:\\",
-    "static":__dirname + "\\views"
+    "static.com":__dirname + "\\views"
 };
 
 
-exports.init = function (req, res) {
+var os = require('os'),
+    isWin = /(Windows)/i.test(os.type()),
+    isUnix = /(Darwin|Linux)/i.test(os.type());
 
-};
+if (isUnix) {
+    exports.maps.localhost = '/Users';
+} else if (isWin) {
+    exports.maps.localhost = 'C:\\';
+} else {
+    console.log('without the support of the operation system');
+}

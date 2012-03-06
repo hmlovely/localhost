@@ -17,7 +17,7 @@ var route = require('./route'),
     isWin = /(Windows)/i.test(os.type());
 
 exports.init = function (req, res) {
-    var root = route.maps[req.headers.host];
+    var root = route.config[req.headers.host].path;
     root += (req.url);
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
@@ -98,9 +98,9 @@ exports.init = function (req, res) {
                 else
                 if (stats.isFile()) {
                     fs.readFile(root, function (err, data) {
-                        console.log('file type' + mime.maps[extname])
+                        console.log('file type' + mime.config[extname])
                         if (!err) {
-                            res.writeHead(200, {'Content-Type':mime.maps[extname] ? mime.maps[extname] : 'object/stream'});
+                            res.writeHead(200, {'Content-Type':mime.config[extname] ? mime.config[extname] : 'object/stream'});
                             res.end(data);
                         } else {
                             res.end(err.toString());

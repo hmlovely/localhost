@@ -9,11 +9,11 @@
 "use strict";
 
 
-exports.maps = {
-    "hm":"F:\\",
-    "localh2ost":"C:\\",
-    "localh3ost":"C:\\",
-    "localho4st":"C:\\"
+exports.config = {
+    'localhost':{
+        layout:'layout.jade'
+    },
+    'local.com':{}
 };
 
 
@@ -22,11 +22,11 @@ var os = require('os'),
     isUnix = /(Darwin|Linux)/i.test(os.type());
 
 if (isUnix) {
-    exports.maps.localhost = '/Users';
-    exports.maps['local.com'] = __dirname + '/views';
+    exports.config.localhost.path = '/Users';
+    exports.config['local.com'].path = __dirname + '/views';
 } else if (isWin) {
-    exports.maps.localhost = 'C:\\';
-    exports.maps['local.com'] = __dirname + '\\views';
+    exports.config.localhost.path = 'C:\\';
+    exports.config['local.com'].path = __dirname + '\\views';
 
 } else {
     console.log('without the support of the operation system');

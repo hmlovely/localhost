@@ -5,7 +5,7 @@
  * Time: 下午12:25
  * To change this template use File | Settings | File Templates.
  */
-exports.maps = {
+exports.config = {
     'png':'image/png;',
     'gif':'image/gif',
     'jpg':'image/jpeg',

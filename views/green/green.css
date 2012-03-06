@@ -7,7 +7,8 @@ body {
     background-position: 50% 50%;
     -webkit-transition: all .52s ease-in;
 }
-.box{
+
+.box {
     background: rgba(202, 203, 21, .9);
     height: 50px;
     border-bottom: 1px solid #f6f6f6;
@@ -21,8 +22,9 @@ body {
     display: inline-block;
 
 }
+
 .txt {
-   margin-left: 10px;
+    margin-left: 10px;
     margin-top: 10px;
 }
 
@@ -37,8 +39,6 @@ li, ul {
     padding: 0;
     list-style: none;
 }
-
-
 
 ul {
     text-align: left;

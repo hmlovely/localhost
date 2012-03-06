@@ -15,8 +15,9 @@ exports.maps = {
     'js':'text/javascript',
     'html':'text/html',
     'htm':'text/html',
+    'jade':'text/plain',
     'css':'text/css',
     'xml':'text/xml',
-    'lrc':'text/txt',
+    'lrc':'text/plain',
     'txt':'text/plain'
 };

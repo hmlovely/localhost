@@ -18,7 +18,6 @@ var route = require('./route'),
 
 exports.init = function (req, res) {
     var root = route.maps[req.headers.host];
-    console.log(route.maps)
     root += (req.url);
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
@@ -99,8 +98,8 @@ exports.init = function (req, res) {
                 else
                 if (stats.isFile()) {
                     fs.readFile(root, function (err, data) {
+                        console.log('file type' + mime.maps[extname])
                         if (!err) {
-                            console.log(mime.maps[extname] ? mime.maps[extname] : 'object/stream');
                             res.writeHead(200, {'Content-Type':mime.maps[extname] ? mime.maps[extname] : 'object/stream'});
                             res.end(data);
                         } else {

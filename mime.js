@@ -17,5 +17,6 @@ exports.maps = {
     'htm':'text/html',
     'css':'text/css',
     'xml':'text/xml',
+    'lrc':'text/txt',
     'txt':'text/plain'
 };

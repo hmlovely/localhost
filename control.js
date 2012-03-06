@@ -28,7 +28,7 @@ exports.init = function (req, res) {
                 //如果是目录，则读取目录的所有文件
                 if (stats.isDirectory()) {
                     fs.readdir(root, function (err, files) {
-                            res.writeHead(200, {'Content-type':'text/html; charset="utf-8"'});
+                            res.writeHead(200, {'Content-type':'text/html;charset=gbk'});
                             var _path = (req.url === '/' ? '' : req.url),
                                 data = {
                                     list:[]
@@ -100,8 +100,8 @@ exports.init = function (req, res) {
                 if (stats.isFile()) {
                     fs.readFile(root, function (err, data) {
                         if (!err) {
-                            console.log(mime.maps[extname] ? mime.maps[extname] : 'object/stream')
-                            res.writeHead(200, {'Content-Type':mime.maps[extname] ? mime.maps[extname] : 'object/stream'})
+                            console.log(mime.maps[extname] ? mime.maps[extname] : 'object/stream');
+                            res.writeHead(200, {'Content-Type':mime.maps[extname] ? mime.maps[extname] : 'object/stream'});
                             res.end(data);
                         } else {
                             res.end(err.toString());

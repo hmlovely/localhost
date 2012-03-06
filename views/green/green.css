@@ -3,7 +3,7 @@ body {
     font-size: 12px;
     margin: 0;
     padding: 0;
-    background: url("http://static/mm.jpg");
+    background: url("http://local.com/mm.jpg");
     background-position: 50% 50%;
     -webkit-transition: all .52s ease-in;
 }

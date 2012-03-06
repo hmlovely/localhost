@@ -28,7 +28,7 @@ exports.init = function (req, res) {
                 //如果是目录，则读取目录的所有文件
                 if (stats.isDirectory()) {
                     fs.readdir(root, function (err, files) {
-                            res.writeHead(200, {'Content-type':'text/html;charset=gbk'});
+                            res.writeHead(200, {'Content-type':'text/html;charset=utf-8'});
                             var _path = (req.url === '/' ? '' : req.url),
                                 data = {
                                     list:[]

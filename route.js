@@ -13,8 +13,7 @@ exports.maps = {
     "hm":"F:\\",
     "localh2ost":"C:\\",
     "localh3ost":"C:\\",
-    "localho4st":"C:\\",
-    "local.com":__dirname + "\\views"
+    "localho4st":"C:\\"
 };
 
 
@@ -24,8 +23,11 @@ var os = require('os'),
 
 if (isUnix) {
     exports.maps.localhost = '/Users';
+    exports.maps['local.com'] = __dirname + '/views';
 } else if (isWin) {
     exports.maps.localhost = 'C:\\';
+    exports.maps['local.com'] = __dirname + '\\views';
+
 } else {
     console.log('without the support of the operation system');
 }

@@ -14,7 +14,7 @@ exports.maps = {
     "localh2ost":"C:\\",
     "localh3ost":"C:\\",
     "localho4st":"C:\\",
-    "static.com":__dirname + "\\views"
+    "local.com":__dirname + "\\views"
 };
 
 

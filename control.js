@@ -4,6 +4,7 @@
  * Date: 12-2-18
  * Time: 13:53
  * To change this template use File | Settings | File Templates.
+ * TODO:http://club.cnodejs.org/topic/4f16442ccae1f4aa27001071-后续需兼容大文件
  */
 
 "use strict";
@@ -54,10 +55,6 @@ exports.init = function (req, res) {
                             });
                             //页面标题
                             data['pageTitle'] = decodeURIComponent(path.normalize(_path));
-                            //样式
-                            data['defaultCSS'] = fs.readFileSync('./views/page.css');
-                            //JS
-                            data['defaultJS'] = fs.readFileSync('./views/default.js');
                             //URL路径
                             if (isWin) {
                                 data['path'] = data['pageTitle'].split('\\');
@@ -92,7 +89,7 @@ exports.init = function (req, res) {
                                 data.list[0].href = '/' + data.path[data.path.length - 2].href;
                             }
 
-                            var fn = jade.compile(fs.readFileSync('./views/main-content.jade'));
+                            var fn = jade.compile(fs.readFileSync('./views/layout.jade'));
                             res.end(fn(data));
                         }
                     )
@@ -120,6 +117,7 @@ exports.init = function (req, res) {
     }
     else {
         res.writeHead(404, {'Content-type':'text/html; charset="utf-8"'});
-        res.end('<h1>404!</h1><p><font color="red">' + root + '</font> not exist on the system!</p>');
+        var fn = jade.compile(fs.readFileSync('./views/404.jade'));
+        res.end(fn({path:root}));
     }
 };

@@ -2,8 +2,8 @@
 html(lang="en")
     head
         title=pageTitle
-        style
-            !{defaultCSS}
+        link(rel='stylesheet',href='http://local.com/global.css')
+        link(rel='stylesheet',href='http://local.com/default/default.css')
     body
         div(class="box")
             h1 Path:
@@ -13,14 +13,13 @@ html(lang="en")
                         /
                     - else
                         span=item.text
-
                 - })
-            <input id="search_input" class="txt" type="text" name="q" style="display: inline;">
-            <input id="search_engine_button" class="btn" type="submit" value="搜索" style="display: inline;">
+            input#search_input(class='txt',type='text',name='q',style='display:inline;')
+            input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;')
         #container
             ul
               - list.forEach(function(item){
                 li
                     a(href=item.href)=item.text
               - })
-        script=defaultJS
+        script(src)

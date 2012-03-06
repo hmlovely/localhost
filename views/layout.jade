@@ -2,8 +2,9 @@
 html(lang="en")
     head
         title=pageTitle
-        link(rel='stylesheet',href='http://local.com/global.css')
-        link(rel='stylesheet',href='http://local.com/default/default.css')
+        link(href="http://local.com/global/global.css",rel="stylesheet")
+        each css in hostConfig.cssLink
+            link(href="http://local.com/#{css}.css",rel="stylesheet")
     body
         div(class="box")
             h1 Path:
@@ -22,4 +23,7 @@ html(lang="en")
                 li
                     a(href=item.href)=item.text
               - })
-        script(src)
+        script(src="http://local.com/global/jquery.js")
+        script(src="http://local.com/global/global.js")
+        each js in hostConfig.jsLink
+            script(src="http://local.com/#{js}.js")

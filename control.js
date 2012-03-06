@@ -17,7 +17,8 @@ var route = require('./route'),
     isWin = /(Windows)/i.test(os.type());
 
 exports.init = function (req, res) {
-    var root = route.config[req.headers.host].path;
+    var config = route.config[req.headers.host],
+        root = config.path;
     root += (req.url);
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
@@ -84,6 +85,7 @@ exports.init = function (req, res) {
                                 }
                             });
 
+                            data.hostConfig = config;
                             if (data.path[data.path.length - 2]) {
                                 data.list[0].href = '/' + data.path[data.path.length - 2].href;
                             }

@@ -11,7 +11,9 @@
 
 exports.config = {
     'localhost':{
-        layout:'layout.jade'
+        'layout':'layout.jade',
+        'cssLink':['default/default', 'default/default2'],
+        'jsLink':['default/default']
     },
     'local.com':{}
 };

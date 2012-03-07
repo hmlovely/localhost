@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 exports.config = {
-    'png':'image/png;',
+    'png':'image/png',
     'gif':'image/gif',
     'jpg':'image/jpeg',
     'jpeg':'image/jpeg',

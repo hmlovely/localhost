@@ -10,10 +10,14 @@ document.title += '--HELLO';
 $(document.body).append('<p id="prview"><img src=""></p>');
 $prviewObj = $('#prview');
 $('li').hover(function () {
-    var _src = $(this).find('a').eq(0).attr('href');
-    if (/(png|jpg|jpeg|bmp|gif|ico)/i.test(_src)) {
+    var href = $(this).find('a').eq(0).attr('href'),
+        _href = href;
+    _href = _href.substring(_href.lastIndexOf('.') + 1);
+    console.log(_href);
+    console.log(/(png|jpg|jpeg|bmp|gif|ico)/gi.test(_href));
+    if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
         $prviewObj.show();
-        $prviewObj.find('img').eq(0).attr('src', _src);
+        $prviewObj.find('img').eq(0).attr('src', href);
     }
 }, function () {
     $prviewObj.hide();

@@ -104,7 +104,7 @@ exports.init = function (req, res) {
                 else
                 if (stats.isFile()) {
                     fs.readFile(root, function (err, data) {
-                        console.log('file type' + mime.config[extname])
+                        console.log('file type:\t"' + mime.config[extname])
                         if (!err) {
                             res.writeHead(200, {'Content-Type':mime.config[extname] ? mime.config[extname] : 'object/stream'});
                             res.end(data);

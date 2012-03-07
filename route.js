@@ -27,7 +27,7 @@ if (isUnix) {
     exports.config.localhost.path = '/Users';
     exports.config['local.com'].path = __dirname + '/views';
 } else if (isWin) {
-    exports.config.localhost.path = 'C:\\';
+    exports.config.localhost.path = __dirname.substring(0, 2);
     exports.config['local.com'].path = __dirname + '\\views';
 
 } else {

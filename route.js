@@ -10,12 +10,20 @@
 
 
 exports.config = {
-    'localhost':{
-        'layout':'layout.jade',
+    'localhost':{},
+    'local.com':{},
+    'currentView':'green'
+};
+
+exports.config.views = {
+    "default":{
         'cssLink':['default/default', 'default/default2'],
         'jsLink':['default/default']
     },
-    'local.com':{}
+    'green':{
+        'cssLink':['green/green'],
+        'jsLink':['green/green']
+    }
 };
 
 

@@ -17,12 +17,13 @@ var route = require('./route'),
     isWin = /(Windows)/i.test(os.type());
 
 exports.init = function (req, res) {
-    var config = route.config[req.headers.host];
-    if(!config){
+    var config = route.config,
+        currentConfig = config[req.headers.host];
+    if (!currentConfig) {
         res.end();
         return;
     }
-    var root = config.path;
+    var root = currentConfig.path;
     root += (req.url);
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
@@ -89,7 +90,7 @@ exports.init = function (req, res) {
                                 }
                             });
 
-                            data.hostConfig = config;
+                            data.config = config;
                             if (data.path[data.path.length - 2]) {
                                 data.list[0].href = '/' + data.path[data.path.length - 2].href;
                             }

@@ -13,8 +13,6 @@ $('li').hover(function () {
     var href = $(this).find('a').eq(0).attr('href'),
         _href = href;
     _href = _href.substring(_href.lastIndexOf('.') + 1);
-    console.log(_href);
-    console.log(/(png|jpg|jpeg|bmp|gif|ico)/gi.test(_href));
     if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
         $prviewObj.show();
         $prviewObj.find('img').eq(0).attr('src', href);

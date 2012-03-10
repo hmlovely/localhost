@@ -3,7 +3,7 @@ html(lang="en")
     head
         title=pageTitle
         link(href="http://local.com/global/global.css",rel="stylesheet")
-        each css in hostConfig.cssLink
+        each css in config.views[config.currentView].cssLink
             link(href="http://local.com/#{css}.css",rel="stylesheet")
     body
         div(class="box")
@@ -25,5 +25,5 @@ html(lang="en")
               - })
         script(src="http://local.com/global/jquery.js")
         script(src="http://local.com/global/global.js")
-        each js in hostConfig.jsLink
+        each js in config.views[config.currentView].jsLink
             script(src="http://local.com/#{js}.js")

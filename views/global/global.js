@@ -15,3 +15,10 @@ $('#testContainer').css('opacity', '0').animate({
     'margin-top':'40px',
     opacity:1
 }, 300);
+
+/*改变配置信息*/
+$('#switch-views').bind('change', function () {
+    $.post('modifyConfig', {currentView:this.value}, function () {
+        window.location.reload();
+    }, 'json')
+});

@@ -9,6 +9,9 @@
 
 "use strict";
 var route = require('./config'),
+    config = route.config,
+    url = require('url'),
+    querystring = require('querystring'),
     fs = require('fs'),
     jade = require('jade'),
     path = require('path'),
@@ -17,8 +20,16 @@ var route = require('./config'),
     isWin = /(Windows)/i.test(os.type());
 
 exports.init = function (req, res) {
-    var config = route.config,
-        currentConfig = config[req.headers.host];
+    var method = req.method;
+    if (method === 'GET') {
+        exports.GET(req, res);
+    } else if (method === 'POST') {
+        exports.POST(req, res);
+    }
+};
+
+exports.GET = function (req, res) {
+    var currentConfig = config[req.headers.host];
     if (!currentConfig) {
         res.end();
         return;
@@ -124,4 +135,30 @@ exports.init = function (req, res) {
         var fn = jade.compile(fs.readFileSync('./views/404.jade'));
         res.end(fn({path:root}));
     }
+};
+
+
+exports.POST = function (req, res) {
+    var _url = url.parse('http://' + req.headers.host + req.url);
+    if (_url.pathname === '/modifyConfig') {
+        var postData = [];
+        req.addListener("data", function (postDataChunk) {
+            postData.push(postDataChunk);
+        });
+        req.addListener('end', function () {
+            config.currentView = querystring.parse(postData.join()).currentView;
+            res.end(JSON.stringify(config));
+            exports.saveConfig();
+        });
+    } else {
+        res.end('Can not understand');
+    }
+};
+
+exports.saveConfig = function () {
+    var _tempObj = [];
+    Object.keys(config).forEach(function (key) {
+        _tempObj.push('exports.' + [key] + ' =' + JSON.stringify(config[key], undefined, '\t') + ';');
+    });
+    fs.writeFile('config.js', _tempObj.join('\r\n\r\n'));
 };

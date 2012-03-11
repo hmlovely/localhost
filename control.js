@@ -8,7 +8,7 @@
  */
 
 "use strict";
-var route = require('./route'),
+var route = require('./config'),
     fs = require('fs'),
     jade = require('jade'),
     path = require('path'),
@@ -38,7 +38,7 @@ exports.init = function (req, res) {
                                 data = {
                                     list:[]
                                 };
-                            files.forEach(function (item, i) {
+                            files.forEach(function (item) {
                                 try {
                                     var _stats = fs.statSync(root + '/' + item);
                                     data.list.push({
@@ -67,7 +67,6 @@ exports.init = function (req, res) {
                                 data['path'] = data['pageTitle'].split('/');
                             }
 
-                            console.log('data path:' + data.path)
                             data['path'] = data['path'].map(function (item, i) {
                                 if (i > 0) {
                                     //判断是否为最后一个元素
@@ -75,7 +74,7 @@ exports.init = function (req, res) {
                                         return {
                                             text:item,
                                             href:encodeURIComponent(data['path'].slice(1, i + 1).join('/'))
-                                        }
+                                        };
                                         //否则，最后一个元素是不需要链接的
                                     } else {
                                         return {
@@ -105,7 +104,6 @@ exports.init = function (req, res) {
                 else
                 if (stats.isFile()) {
                     fs.readFile(root, function (err, data) {
-                        console.log('file type:\t"' + mime.config[extname])
                         if (!err) {
                             res.writeHead(200, {'Content-Type':mime.config[extname] ? mime.config[extname] : 'object/stream'});
                             res.end(data);

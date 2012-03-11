@@ -23,6 +23,10 @@ html(lang="en")
                 li
                     a(href=item.href)=item.text
               - })
+        #config-container
+            select#switch-views
+                each item in Object.keys(config.views)
+                    option(value=item)=config.views[item].title
         script(src="http://local.com/global/jquery.js")
         script(src="http://local.com/global/global.js")
         each js in config.views[config.currentView].jsLink

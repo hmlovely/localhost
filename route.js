@@ -12,17 +12,18 @@
 exports.config = {
     'localhost':{},
     'local.com':{},
-    'currentView':'green'
-};
-
-exports.config.views = {
-    "default":{
-        'cssLink':['default/default', 'default/default2'],
-        'jsLink':['default/default']
-    },
-    'green':{
-        'cssLink':['green/green'],
-        'jsLink':['green/green']
+    'currentView':'default',
+    'views':{
+        "default":{
+            'title':'默认主题',
+            'cssLink':['default/default', 'default/default2'],
+            'jsLink':['default/default']
+        },
+        'green':{
+            'title':'绿色心情',
+            'cssLink':['green/green'],
+            'jsLink':['green/green']
+        }
     }
 };
 

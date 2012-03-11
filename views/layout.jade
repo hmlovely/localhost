@@ -2,9 +2,9 @@
 html(lang="en")
     head
         title=pageTitle
-        link(href="http://local.com/global/global.css",rel="stylesheet")
+        link(href="http://local/global/global.css",rel="stylesheet")
         each css in config.views[config.currentView].cssLink
-            link(href="http://local.com/#{css}.css",rel="stylesheet")
+            link(href="http://local/#{css}.css",rel="stylesheet")
     body
         div(class="box")
             h1 Path:
@@ -26,8 +26,11 @@ html(lang="en")
         #config-container
             select#switch-views
                 each item in Object.keys(config.views)
-                    option(value=item)=config.views[item].title
-        script(src="http://local.com/global/jquery.js")
-        script(src="http://local.com/global/global.js")
+                    - if (item===config.currentView)
+                        option(value=item,selected='selected')=config.views[item].title
+                    - else
+                        option(value=item)=config.views[item].title
+        script(src="http://local/global/jquery.js")
+        script(src="http://local/global/global.js")
         each js in config.views[config.currentView].jsLink
             script(src="http://local.com/#{js}.js")

@@ -8,10 +8,9 @@
 
 "use strict";
 
-
 exports.config = {
     'localhost':{},
-    'local.com':{},
+    'local':{},
     'currentView':'default',
     'views':{
         "default":{
@@ -34,10 +33,10 @@ var os = require('os'),
 
 if (isUnix) {
     exports.config.localhost.path = '/Users';
-    exports.config['local.com'].path = __dirname + '/views';
+    exports.config['local'].path = __dirname + '/views';
 } else if (isWin) {
     exports.config.localhost.path = __dirname.substring(0, 2);
-    exports.config['local.com'].path = __dirname + '\\views';
+    exports.config['local'].path = __dirname + '\\views';
 
 } else {
     console.log('without the support of the operation system');

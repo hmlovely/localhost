@@ -157,8 +157,9 @@ exports.POST = function (req, res) {
 
 exports.saveConfig = function () {
     var _tempObj = [];
+    _tempObj.push('exports.config={};');
     Object.keys(config).forEach(function (key) {
-        _tempObj.push('exports.' + [key] + ' =' + JSON.stringify(config[key], undefined, '\t') + ';');
+        _tempObj.push('exports.config.' + [key] + ' =' + JSON.stringify(config[key], undefined, '\t') + ';');
     });
     fs.writeFile('config.js', _tempObj.join('\r\n\r\n'));
 };

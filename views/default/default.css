@@ -1,38 +1,106 @@
+body {
+    background:#dedede;
+
+}
+
+.all {
+    background:rgba(246, 246, 246, .7);
+    height:35px;
+}
+
+.box {
+    width:960px;
+    margin:0 auto;
+    position:relative;
+}
+
 h1 {
-    font-size: 17px;
+    font-size:20px;
     color: #444;
-    border-bottom: dashed 1px #aaa;
-    padding-bottom: 1em;
-    margin: 1em 1em 0 1em;
+    padding-top:10px;
+    display:inline-block;
+    margin-top:25px;
 }
 
 h1 a {
-    color: blue;
+    color: #A8A8A8;
     text-decoration: none;
     margin: 0 3px;
 }
 
 h1 a:hover {
-    border-bottom: solid 1px blue;
+    border-bottom: solid 1px #A8A8A8;
     text-shadow: 1px 1px 1px #ccf;
+}
+
+.txt {
+    height: 18px;
+    position: absolute;
+    right: 200px;
+    top: -27px;
+    border:1px solid #999;
+}
+
+.btn {
+    position: absolute;
+    right: 140px;
+    top: -28px;
 }
 
 ul {
     padding: 1em;
     line-height: 180%;
+    width:960px;
 }
 
 #container a {
     text-decoration: none;
-    color: blue;
-    display: block;
+    display: inline-block;
     border-radius: 3px;
     padding: 2px;
+    margin-right:100px;
+    color:#A8A8A8;
+    font-weight:bold;
+}
+
+li {
+    width:930px;
+    position:relative;
+    height:30px;
+    overflow:hidden;
+    line-height:25px;
+}
+
+li .word{
+    width:500px;
+    overflow:hidden;
+    display:inline-block;
 }
 
 li:nth-child(2n) {
     background: #f6f6f6;
     border-radius: 2px;
+    width:930px;
+}
+
+li span {
+    display:inline-block;
+    width:160px;
+}
+
+li .revise {
+    position:absolute;
+    left:700px;
+}
+
+li .rename {
+    position:absolute;
+    left:800px;
+}
+
+li .del {
+    position:absolute;
+    left:600px;
 }
 
 #container a:hover {
@@ -44,9 +112,12 @@ body, h1 {
 }
 
 #container {
-    margin-left: 1em;
-    width: 70%;
+   width:960px;
     font-size: 14px;
+    margin:0 auto;
+    border-radius: 5px 5px 5px 5px;
+    background:#fff;
+    margin-top:50px;
 }
 
 #prview {

@@ -1,58 +1,88 @@
 body {
-    font-family: simsun, verdana, sans-serif;
-    font-size: 12px;
-    margin: 0;
-    padding: 0;
-    background: url("http://local.com/mm.jpg");
-    background-position: 50% 50%;
-    -webkit-transition: all .52s ease-in;
+    /*background:#ffc0cb;*/
+    background: url("http://local/green/bgreen.jpg");
+}
+
+.all {
+    background:rgba(246, 246, 246, .7);
+    height:35px;
 }
 
 .box {
-    background: rgba(202, 203, 21, .9);
-    height: 50px;
-    border-bottom: 1px solid #f6f6f6;
-
+    width:960px;
+    margin:0 auto;
+    position:relative;
+    height:35px;
 }
 
-.box h1 {
-    margin: 0 0 0 165px;
-    padding: 0;
-    padding-top: 10px;
-    display: inline-block;
+h1 {
+    font-size: 20px;
+    color: black;
+    padding-top:10px;
+    display:inline-block;
+    margin-top:25px;
+}
 
+h1 a {
+    color: black;
+    text-decoration: none;
+    margin: 0 3px;
+}
+
+h1 a:hover {
+    border-bottom: solid 1px black;
 }
 
 .txt {
-    margin-left: 10px;
-    margin-top: 10px;
+    height: 18px;
+    position: absolute;
+    right: 200px;
+    top: -27px;
+    border:1px solid #999;
+}
+
+.btn {
+    position: absolute;
+    right: 140px;
+    top: -28px;
 }
 
 #container {
-    width: 1045px;
-    margin: 0 auto;
-    padding: 2em;
+    width:960px;
+    font-size: 14px;
+    background:#fff;
+    margin:0 auto;
+    margin-top:50px;
 }
 
-li, ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+#container a{
+    color:#A8A8A8;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+#container a:hover {
+    text-decoration:underline;
+    color:red;
 }
 
 ul {
-    text-align: left;
+   background:#fff;
+    width:960px;
+    position:absolute;
+    border-radius: 5px 5px 5px 5px;
 }
 
-li {
+/*li a{
     width: 150px;
     height: 150px;
     display: inline-block;
     vertical-align: top;
-    background: rgba(202, 203, 21, .9);
+    background: rgba(254, 213, 219, .9);
     margin: 1em;
     position: relative;
     border-radius: 4px;
+
 }
 
 li:hover {
@@ -72,6 +102,46 @@ li a {
     margin-top: -15px;
     opacity: .8;
     text-align: center;
-    color: #fff;
+    color: #545454;
     text-decoration: none;
+}*/
+
+li {
+    float:left;
+    margin-left:52px;
+    margin-top:10px;
+    margin-bottom:20px;
+    width:400px;
+    height:50px;
+    position:relative;
+    background:#EBFEEA;
+    border-radius: 5px 5px 5px 5px;
+    line-height:50px;
+
+}
+
+li .word{
+    width:150px;
+    overflow:hidden;
+    display:inline-block;
+}
+
+li span {
+    display:inline-block;
+    width:150px;
+}
+
+li .revise {
+    position:absolute;
+    left:270px;
+}
+
+li .rename {
+    position:absolute;
+    left:340px;
+}
+
+li .del {
+    position:absolute;
+    left:200px;
 }

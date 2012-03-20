@@ -6,6 +6,7 @@ html(lang="en")
         each css in config.views[config.currentView].cssLink
             link(href="http://local/#{css}.css",rel="stylesheet")
     body
+        div(class="all")
         div(class="box")
             h1 Path:
                 - path.forEach(function(item){
@@ -21,7 +22,17 @@ html(lang="en")
             ul
               - list.forEach(function(item){
                 li
-                    a(href=item.href)=item.text
+                    div(class="word")
+                       a(href=item.href)=item.text
+                    span(class="del")
+                      a( href="")
+                        删除
+                    span(class="revise")
+                      a( href="")
+                        修改
+                    span(class="rename")
+                      a( href="")
+                       重命名
               - })
         #config-container
             select#switch-views
@@ -33,4 +44,4 @@ html(lang="en")
         script(src="http://local/global/jquery.js")
         script(src="http://local/global/global.js")
         each js in config.views[config.currentView].jsLink
-            script(src="http://local.com/#{js}.js")
+            script(src="http://local/#{js}.js")

@@ -13,6 +13,11 @@ ul, li {
 
 #config-container {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 355px;
+    top: 8px;
+
+}
+
+#switch-views {
+    height:22px;
 }

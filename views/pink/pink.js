@@ -6,4 +6,4 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$('body').append('<p>我来自pink.js</p>');
+//$('body').append('<p>我来自pink.js</p>');

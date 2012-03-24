@@ -59,6 +59,7 @@ h1 a:hover {
     color:#A8A8A8;
     font-weight:bold;
     text-decoration:none;
+    white-space: nowrap;
 }
 
 #container a:hover {

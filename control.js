@@ -140,8 +140,8 @@ exports.GET = function (req, res) {
 
 exports.POST = function (req, res) {
     var _url = url.parse('http://' + req.headers.host + req.url);
+    var postData = [];
     if (_url.pathname === '/modifyConfig') {
-        var postData = [];
         req.addListener("data", function (postDataChunk) {
             postData.push(postDataChunk);
         });
@@ -150,8 +150,25 @@ exports.POST = function (req, res) {
             res.end(JSON.stringify(config));
             exports.saveConfig();
         });
+    } else if ('/delete') {
+        postData = [];
+        req.addListener("data", function (postDataChunk) {
+            postData.push(postDataChunk);
+        });
+        req.addListener('end', function () {
+            var filename = querystring.parse(postData.join());
+            console.log(config[req.headers.host].path + filename.files);
+            fs.unlink(config[req.headers.host].path + filename.files, function (err) {
+                if (!err) {
+                    res.end(JSON.stringify({success:true}))
+                } else {
+                    res.end(JSON.stringify({error:err.toString()}));
+                }
+            });
+            postData = [];
+        });
     } else {
-        res.end('Can not understand');
+
     }
 };
 

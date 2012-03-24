@@ -24,15 +24,12 @@ html(lang="en")
                 li
                     div(class="word")
                        a(href=item.href)=item.text
-                    span(class="del")
-                      a( href="")
-                        删除
+                    span(class="del",filename=item.href)
+                      a|删除
                     span(class="revise")
-                      a( href="")
-                        修改
+                      a|修改
                     span(class="rename")
-                      a( href="")
-                       重命名
+                      a|重命名
               - })
         #config-container
             select#switch-views

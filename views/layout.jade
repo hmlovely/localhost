@@ -20,16 +20,23 @@ html(lang="en")
             input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;')
         #container
             ul
-              - list.forEach(function(item){
+              - list.forEach(function(item,index){
                 li
                     div(class="word")
-                       a(href=item.href)=item.text
+                        - if(item.isDirecotory)
+                            a(href=item.href,isdir="dir")
+                                |【DIR】
+                                =item.text
+                        - else
+                            a(href=item.href,isdir="file")
+                                |【File】
+                                =item.text
                     span(class="del",filename=item.href)
-                      a|删除
+                         a|删除
                     span(class="revise")
-                      a|修改
+                         a|修改
                     span(class="rename")
-                      a|重命名
+                         a|重命名
               - })
         #config-container
             select#switch-views

@@ -55,12 +55,50 @@ exports.GET = function (req, res) {
                                     data.list.push({
                                         href:_path + '/' + encodeURIComponent(item),
                                         text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
-                                        isDirecotory:_stats.isDirectory()
+                                        isDirecotory:_stats.isDirectory(),
+                                        createTime: _stats.ctime,
+                                        size: _stats.size
                                     });
+
                                 } catch (e) {
                                     console.log('Error:' + item);
                                 }
                             });
+
+                           //FIXME,从url中获取sortType
+                            var sortType = "time";
+                            switch(sortType){
+                                case "time":
+                                    data.list.sort(function(i,j){
+                                        i = Date.parse(i.createTime);
+                                        j = Date.parse(j.createTime);
+
+                                        if(i==j) {
+                                            return 0;
+                                        } else if (i>j) {
+                                            return -1;
+                                        } else {
+                                            return 1;
+                                        }
+                                    });
+                                    break;
+                                case "size":
+                                    data.list.sort(function(i,j){
+                                        i = i.size;
+                                        j = j.size;
+
+                                        if(i==j){
+                                            return 0;
+                                        } else if(i>j) {
+                                            return -1;
+                                        } else {
+                                            return -1;
+                                        }
+                                    })
+                                    break;
+                                default:
+                            }
+
                             //在数组最前端，增加一个元素，用以返回上一层目录
                             //todo:待优化，判断当前是否已经在顶层，如果是，则不显示 Parent Direcotry
                             data.list.unshift({

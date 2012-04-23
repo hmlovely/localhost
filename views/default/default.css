@@ -67,9 +67,9 @@ ul {
 li {
     width:930px;
     position:relative;
-    height:30px;
+    height:35px;
     overflow:hidden;
-    line-height:25px;
+    line-height:30px;
 }
 
 li .word{
@@ -129,4 +129,16 @@ body, h1 {
     height: 300px;
     padding: 1em;
     overflow: hidden;
+}
+
+#prview {
+    position:absolute;
+    left:600px;
+    top:250px;
+}
+
+.back-to a{
+    position:absolute;
+    bottom:-380px;
+    right:260px;
 }

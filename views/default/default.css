@@ -33,19 +33,7 @@ h1 a:hover {
     text-shadow: 1px 1px 1px #ccf;
 }
 
-.txt {
-    height: 18px;
-    position: absolute;
-    right: 200px;
-    top: -27px;
-    border:1px solid #999;
-}
 
-.btn {
-    position: absolute;
-    right: 140px;
-    top: -28px;
-}
 
 ul {
     padding: 1em;

@@ -38,6 +38,9 @@ html(lang="en")
                         option(value=item,selected='selected')=config.views[item].title
                     - else
                         option(value=item)=config.views[item].title
+            select#list-sort
+                option(value="time") 时间
+                option(value="size") 大小
         #toolBackTo(class="back-to")
             a(onclick="window.scrollTo(0,0);return false;")
                 img(src="http://local/global/back.png")

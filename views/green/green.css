@@ -33,20 +33,6 @@ h1 a:hover {
     border-bottom: solid 1px black;
 }
 
-.txt {
-    height: 18px;
-    position: absolute;
-    right: 200px;
-    top: -27px;
-    border:1px solid #999;
-}
-
-.btn {
-    position: absolute;
-    right: 140px;
-    top: -28px;
-}
-
 #container {
     width:960px;
     font-size: 14px;
@@ -73,39 +59,6 @@ ul {
     position:absolute;
     border-radius: 5px 5px 5px 5px;
 }
-
-/*li a{
-    width: 150px;
-    height: 150px;
-    display: inline-block;
-    vertical-align: top;
-    background: rgba(254, 213, 219, .9);
-    margin: 1em;
-    position: relative;
-    border-radius: 4px;
-
-}
-
-li:hover {
-    color: #fff;
-}
-
-li a {
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    height: 30px;
-    line-height: 30px;
-    width: 100%;
-    margin-top: -15px;
-    opacity: .8;
-    text-align: center;
-    color: #545454;
-    text-decoration: none;
-}*/
 
 li {
     float:left;

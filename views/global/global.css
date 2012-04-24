@@ -1,24 +1,32 @@
-body, p, ul, li, h1 {
-    margin: 0;
-    padding: 0;
+body, p, ul, li, h1{
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-size: 14px;
+body{
+    font-size:14px;
 }
 
-ul, li {
-    list-style: none;
+ul, li{
+    list-style:none;
 }
 
-#config-container {
-    position: absolute;
-    right: 235px;
-    top: 8px;
+#config-container{
+    position:absolute;
+    right:445px;
+    top:9px;
 
 }
 
-#switch-views {
+#list-sort{
+    position:absolute;
+    left:100px;
+    top:0;
+    height:22px;
+    width:75px;
+}
+
+#switch-views{
     height:22px;
 }
 
@@ -26,4 +34,18 @@ ul, li {
     position:absolute;
     bottom:-490px;
     right:260px;
+}
+
+.txt {
+    height: 18px;
+    position: absolute;
+    right: 290px;
+    top: -27px;
+    border:1px solid #999;
+}
+
+.btn {
+    position: absolute;
+    right: 230px;
+    top: -28px;
 }

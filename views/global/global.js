@@ -25,6 +25,8 @@ $('#switch-views').bind('change', function () {
     }, 'json')
 });
 
+
+
 $('span.del').click(function () {
     $this = $(this);
     $.post('delete', {
@@ -34,3 +36,5 @@ $('span.del').click(function () {
     }, 'text');
     return false;
 });
+
+

@@ -25,6 +25,7 @@ $('#switch-views').bind('change', function () {
     }, 'json');
 });
 
+
 $('span.del').click(function () {
     $this = $(this);
     $.post('delete', {
@@ -35,3 +36,69 @@ $('span.del').click(function () {
     }, 'text');
     return false;
 });
+
+
+document.title += '--HELLO';
+$(document.body).append('<p id="prview"><img src=""></p>');
+$prviewObj = $('#prview');
+$('li').hover(function () {
+    var href = $(this).find('a').eq(0).attr('href'),
+        _href = href;
+    _href = _href.substring(_href.lastIndexOf('.') + 1);
+    if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
+        $prviewObj.show();
+        $prviewObj.find('img').eq(0).attr('src', href);
+    }
+}, function () {
+    $prviewObj.hide();
+});
+
+
+//排序，按时间和大小
+ var modSort = function (id, tag, prop) {
+     this.box = document.getElementById(id);
+     this.tag = tag;
+     this.arr = this.box.getElementsByTagName(this.tag);
+     this.prop = prop;
+     this.init();
+ };
+
+ modSort.prototype = {
+     init:function () {
+         var _this = this, len = _this.arr.length, temp = 0,temp1 = 0, nums = [],sort = [];
+         for (var i = 0; i < len; i++) {
+             nums.push(new Date(_this.arr[i].getAttribute(_this.prop)));
+             sort.push(i);
+         }
+         for (var i = 0; i < len; i++) {
+             for (var j = 0; j < len - 1; j++) {
+                 if (nums[j].getTime() > nums[j + 1].getTime()) {
+                     temp = nums[j];
+                     nums[j] = nums[j + 1];
+                     nums[j + 1] = temp;
+
+                     temp1 = sort[j];
+                     sort[j] = sort[j + 1];
+                     sort[j + 1] = temp1;
+                 }
+             }
+         }
+         for (var i = 0; i < len; i++) {
+             for(var j = 0; j < len; j++){
+                 if (nums[i].getTime() == new Date(_this.arr[j].getAttribute(_this.prop)).getTime()) {
+                      _this.box.insertBefore(_this.arr[sort[i]],_this.arr[i]);
+                  }
+             }
+             //_this.box.insertBefore(_this.arr[i],_this.arr[sort[i] + 1]);
+         }
+     }
+ }
+var _list = document.getElementById("list-sort");
+_list.onchange = function () {
+    //console.log(this.value);
+    new modSort("sort-ul", "li", "time");
+}
+
+
+//瀑布流展示
+//平铺

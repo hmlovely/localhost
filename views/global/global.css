@@ -1,23 +1,173 @@
-body, p, ul, li, h1 {
-    margin: 0;
-    padding: 0;
+body, p, ul, li, h1{
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-size: 14px;
+body{
+    font-size:14px;
 }
 
-ul, li {
-    list-style: none;
+ul, li{
+    list-style:none;
 }
 
-#config-container {
-    position: absolute;
-    right: 235px;
-    top: 8px;
+#config-container{
+    position:absolute;
+    right:445px;
+    top:9px;
 
 }
 
-#switch-views {
+#list-sort{
+    position:absolute;
+    left:100px;
+    top:0;
     height:22px;
+    width:80px;
 }
+
+#switch-views{
+    height:22px;
+    width:80px;
+}
+
+.back-to a{
+    position:absolute;
+    bottom:-490px;
+    right:260px;
+}
+
+.txt {
+    height: 18px;
+    position: absolute;
+    right: 290px;
+    top: -27px;
+    border:1px solid #999;
+}
+
+.btn {
+    position: absolute;
+    right: 230px;
+    top: -28px;
+}
+
+
+
+.box {
+    width:960px;
+    margin:0 auto;
+    position:relative;
+}
+
+h1 {
+    font-size:20px;
+    color: #444;
+    padding-top:10px;
+    display:inline-block;
+    margin-top:25px;
+}
+
+h1 a {
+    color: #A8A8A8;
+    text-decoration: none;
+    margin: 0 3px;
+}
+
+h1 a:hover {
+    border-bottom: solid 1px #A8A8A8;
+    text-shadow: 1px 1px 1px #ccf;
+}
+
+
+
+ul {
+    padding: 1em;
+    line-height: 180%;
+    width:960px;
+}
+
+#container a {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px;
+    margin-right:100px;
+    color:#A8A8A8;
+    font-weight:bold;
+    white-space: nowrap;
+}
+
+li {
+    width:930px;
+    position:relative;
+    height:35px;
+    overflow:hidden;
+    line-height:30px;
+}
+
+li .word{
+    width:500px;
+    overflow:hidden;
+    display:inline-block;
+}
+
+li:nth-child(2n) {
+    background: #f6f6f6;
+    border-radius: 2px;
+    width:930px;
+}
+
+li span {
+    display:inline-block;
+    width:160px;
+}
+
+li .revise {
+    position:absolute;
+    left:800px;
+}
+
+li .del {
+    position:absolute;
+    left:700px;
+}
+
+#container a:hover {
+    background: #afa;
+}
+
+body, h1 {
+    font-family: tahoma, verdana, sans-serif;
+}
+
+#container {
+   width:960px;
+    font-size: 14px;
+    margin:0 auto;
+    border-radius: 5px 5px 5px 5px;
+    background:#fff;
+    margin-top:50px;
+}
+
+#prview {
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+    width: 300px;
+    height: 300px;
+    padding: 1em;
+    overflow: hidden;
+}
+
+#prview {
+    position:absolute;
+    left:600px;
+    top:250px;
+}
+
+.back-to a{
+    position:absolute;
+    bottom:-380px;
+    right:260px;
+}
+

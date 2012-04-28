@@ -8,7 +8,8 @@ exports.config.local ={
 	"path": "D:\\localhost\\views"
 };
 
-exports.config.currentView ="green";
+exports.config.currentView ="default";
+
 
 exports.config.views ={
 	"default": {
@@ -31,7 +32,7 @@ exports.config.views ={
 		]
 	},
 	"pink": {
-		"title": "pink",
+		"title": "爱心粉色",
 		"cssLink": [
 			"pink/pink"
 		],

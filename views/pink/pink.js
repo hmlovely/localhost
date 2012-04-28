@@ -7,3 +7,4 @@
  */
 
 //$('body').append('<p>我来自pink.js</p>');
+

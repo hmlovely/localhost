@@ -1,14 +1,14 @@
 exports.config={};
 
 exports.config.localhost ={
-	"path": "F:"
+	"path": "D:"
 };
 
 exports.config.local ={
-	"path": "F:\\localhost\\views"
+	"path": "D:\\localhost\\views"
 };
 
-exports.config.currentView ="pink";
+exports.config.currentView ="green";
 
 exports.config.views ={
 	"default": {

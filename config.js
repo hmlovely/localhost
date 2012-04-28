@@ -31,7 +31,7 @@ exports.config.views ={
 		]
 	},
 	"pink": {
-		"title": "粉色",
+		"title": "爱心粉色",
 		"cssLink": [
 			"pink/pink"
 		],

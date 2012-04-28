@@ -19,17 +19,15 @@ html(lang="en")
             input#search_input(class='txt',type='text',name='q',style='display:inline;')
             input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;')
         #container
-            ul
+            ul(id="sort-ul")
               - list.forEach(function(item){
-                li
+                li(time=item.time)
                     div(class="word")
                        a(href=item.href)=item.text
                     span(class="del",filename=item.href)
                       a|删除
                     span(class="revise")
                       a|修改
-                    span(class="rename")
-                      a|重命名
               - })
         #config-container
             select#switch-views
@@ -39,8 +37,8 @@ html(lang="en")
                     - else
                         option(value=item)=config.views[item].title
             select#list-sort
-                option(value="time") 时间
-                option(value="size") 大小
+                option(value="time_desc") 时间降序
+                option(value="time_asc") 时间升序
         #toolBackTo(class="back-to")
             a(onclick="window.scrollTo(0,0);return false;")
                 img(src="http://local/global/back.png")

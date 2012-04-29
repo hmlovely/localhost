@@ -60,11 +60,10 @@ $('li').hover(function () {
      this.tag = tag;
      this.arr = this.box.getElementsByTagName(this.tag);
      this.prop = prop;
-     this.init();
  };
 
  modSort.prototype = {
-     init:function () {
+     asc:function () {
          var _this = this, len = _this.arr.length, temp = 0,temp1 = 0, nums = [],sort = [];
          for (var i = 0; i < len; i++) {
              nums.push(new Date(_this.arr[i].getAttribute(_this.prop)));
@@ -86,19 +85,47 @@ $('li').hover(function () {
          for (var i = 0; i < len; i++) {
              for(var j = 0; j < len; j++){
                  if (nums[i].getTime() == new Date(_this.arr[j].getAttribute(_this.prop)).getTime()) {
-                      _this.box.insertBefore(_this.arr[sort[i]],_this.arr[i]);
+                      _this.box.insertBefore(_this.arr[j],_this.arr[i]);
                   }
              }
-             //_this.box.insertBefore(_this.arr[i],_this.arr[sort[i] + 1]);
+         }
+     },
+	 desc:function () {
+         var _this = this, len = _this.arr.length, temp = 0,temp1 = 0, nums = [],sort = [];
+         for (var i = 0; i < len; i++) {
+             nums.push(new Date(_this.arr[i].getAttribute(_this.prop)));
+             sort.push(i);
+         }
+         for (var i = 0; i < len; i++) {
+             for (var j = 0; j < len - 1; j++) {
+                 if (nums[j].getTime() < nums[j + 1].getTime()) {
+                     temp = nums[j];
+                     nums[j] = nums[j + 1];
+                     nums[j + 1] = temp;
+
+                     temp1 = sort[j];
+                     sort[j] = sort[j + 1];
+                     sort[j + 1] = temp1;
+                 }
+             }
+         }
+         for (var i = 0; i < len; i++) {
+             for(var j = 0; j < len; j++){
+                 if (nums[i].getTime() == new Date(_this.arr[j].getAttribute(_this.prop)).getTime()) {
+                      _this.box.insertBefore(_this.arr[j],_this.arr[i]);
+                  }
+             }
          }
      }
  }
 var _list = document.getElementById("list-sort");
 _list.onchange = function () {
-    //console.log(this.value);
-    new modSort("sort-ul", "li", "time");
+    if(this.value == "time_asc"){
+    	new modSort("sort-ul", "li", "time").asc();
+	}else if(this.value == "time_desc"){
+		new modSort("sort-ul", "li", "time").desc();
+	}
 }
-
 
 //瀑布流展示
 //平铺

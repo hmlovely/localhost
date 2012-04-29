@@ -17,7 +17,8 @@ var route = require('./config'),
     path = require('path'),
     mime = require('./mime'),
     os = require('os'),
-    isWin = /(Windows)/i.test(os.type());
+    isWin = /(Windows)/i.test(os.type()),
+    exec = require('child_process').exec;
 
 exports.init = function (req, res) {
     var method = req.method;
@@ -53,7 +54,7 @@ exports.GET = function (req, res) {
                                 try {
                                     var _stats = fs.statSync(root + '/' + item);
                                     data.list.push({
-                                        href:_path + '/' + encodeURIComponent(item),
+                                        href:_path + '/' + encodeURIComponent(item)
                                         text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
                                         //isDirecotory:_stats.isDirectory(),
                                         time:_stats.ctime,
@@ -118,8 +119,7 @@ exports.GET = function (req, res) {
 
                 }
                 //如果是文件则读取文件内容
-                else
-                if (stats.isFile()) {
+                else if (stats.isFile()) {
                     fs.readFile(root, function (err, data) {
                         if (!err) {
                             res.writeHead(200, {'Content-Type':mime.config[extname] ? mime.config[extname] : 'object/stream'});
@@ -162,15 +162,29 @@ exports.POST = function (req, res) {
             postData.push(postDataChunk);
         });
         req.addListener('end', function () {
-            var filename = querystring.parse(postData.join());
-            console.log(config[req.headers.host].path + filename.files);
-            fs.unlink(config[req.headers.host].path + filename.files, function (err) {
-                if (!err) {
-                    res.end(JSON.stringify({success:true}))
-                } else {
-                    res.end(JSON.stringify({error:err.toString()}));
+            var filename = querystring.parse(postData.join(''));
+            var files = config[req.headers.host].path + decodeURIComponent(filename.files);
+            if (filename.isdir === 'file') {
+                fs.unlink(files, function (err) {
+                    if (!err) {
+                        res.end(JSON.stringify({success:true}))
+                    } else {
+                        res.end(JSON.stringify({error:err.toString()}));
+                    }
+                });
+            } else if (filename.isdir === 'dir') {
+                files = files.replace(/\//, '\\');
+                try {
+                    exec('del ' + files + ' /F /S /Q', function () {
+                        exec('rd ' + files + ' /S /Q');
+                    });
+                    res.end(JSON.stringify({'success':'done'}));
+                } catch (e) {
+                    res.end(JSON.stringify({"error":e.toString()}));
                 }
-            });
+            } else {
+                res.end(JSON.stringify({error:'Not understand!'}));
+            }
             postData = [];
         });
     } else {

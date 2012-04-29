@@ -1,7 +1,7 @@
 exports.config={};
 
 exports.config.localhost ={
-	"path": "D:\\"
+	"path": "D:"
 };
 
 exports.config.local ={
@@ -9,6 +9,7 @@ exports.config.local ={
 };
 
 exports.config.currentView ="default";
+
 
 exports.config.views ={
 	"default": {

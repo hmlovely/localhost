@@ -22,14 +22,15 @@
 $('#switch-views').bind('change', function () {
     $.post('modifyConfig', {currentView:this.value}, function () {
         window.location.reload();
-    }, 'json')
+    }, 'json');
 });
 
 
 $('span.del').click(function () {
     $this = $(this);
     $.post('delete', {
-        'files':$this.parent('li').find('>div.word>a').attr('href')
+        'files':$this.parent('li').find('>div.word>a').attr('href'),
+        'isdir':$this.parent('li').find('>div.word>a').attr('isdir')
     }, function (data) {
         $this.parent('li').remove();
     }, 'text');

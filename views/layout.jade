@@ -23,14 +23,7 @@ html(lang="en")
               - list.forEach(function(item){
                 li(time=item.time)
                     div(class="word")
-                        - if(item.isDirecotory)
-                            a(href=item.href,isdir="dir")
-                                |【DIR】
-                                =item.text
-                        - else
-                            a(href=item.href,isdir="file")
-                                |【File】
-                                =item.text
+                        a(href=item.href)=item.text
                         span(class="del",filename=item.href)
                             a|删除
                         span(class="revise")

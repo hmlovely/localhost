@@ -10,7 +10,6 @@ exports.config.local ={
 
 exports.config.currentView ="default";
 
-
 exports.config.views ={
 	"default": {
 		"title": "默认主题",

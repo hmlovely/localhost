@@ -31,12 +31,21 @@ exports.config.views ={
 		]
 	},
 	"pink": {
-		"title": "爱心粉色",
+		"title": "圆点粉色",
 		"cssLink": [
 			"pink/pink"
 		],
 		"jsLink": [
 			"pink/pink"
+		]
+	},
+	"yellow": {
+		"title": "黄色花朵",
+		"cssLink": [
+			"yellow/yellow"
+		],
+		"jsLink": [
+			"yellow/yellow"
 		]
 	}
 };

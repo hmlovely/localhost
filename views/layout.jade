@@ -19,41 +19,41 @@ html(lang="en")
                 - })
             input#search_input(class='txt',type='text',name='q',style='display:inline;',id="key_input")
             input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;',id='search-btn')
-        #container(class="water_full")
-            ul(id="sort-ul")
-              - list.forEach(function(item,index){
-                li(time=item.time,size=item.size)
-                  div(class="word")
-                          a(href=item.href,isdir="dir")
-                              =item.text
-                  span(class="del",filename=item.href)
-                          a(title="删除")
-                               img(src="http://local/global/del.png")
-                  span(class="revise")
-                          a(title="修改")
-                               img(src="http://local/global/alert.png")
-               - })
         #config-container
             select#switch-views
                 each item in Object.keys(config.views)
                     - if (item===config.currentView)
-                        option(value=item,selected='selected')=config.views[item].title
+                         option(value=item,selected='selected')=config.views[item].title
                     - else
-                        option(value=item)=config.views[item].title
+                         option(value=item)=config.views[item].title
             select#list-sort
-                option(value="time_desc") 时间降序
-                option(value="time_asc") 时间升序
-                option(value="size_desc") 从大到小
-                option(value="size_asc") 从小到大
-            #water_pull
-                a(title="瀑布流展示")
-                     img(src="http://local/global/water.png")
+                    option(value="time_desc") 时间降序
+                    option(value="time_asc") 时间升序
+                    option(value="size_desc") 从大到小
+                    option(value="size_asc") 从小到大
             #dis_list
-                a(title="列表展示")
-                     img(src="http://local/global/list.png")
+                    a(title="列表展示")
+                         img(src="http://local/global/list.png")
+            #water_pull
+                    a(title="瀑布流展示")
+                         img(src="http://local/global/water.png")
             #dis_mode
-                a(title="图标展示")
-                     img(src="http://local/global/mode.png")
+                    a(title="平铺展示")
+                         img(src="http://local/global/mode.png")
+        #container
+            ul(id="sort-ul")
+              - list.forEach(function(item,index){
+                li(time=item.time,size=item.size,class="list-li")
+                  div(class="word")
+                       a(href=item.href,isdir="dir")
+                            =item.text
+                  span(class="del",filename=item.href)
+                       a(title="删除")
+                            img(src="http://local/global/del.png")
+                  span(class="revise")
+                       a(title="修改")
+                            img(src="http://local/global/alert.png")
+               - })
         #toolBackTo(class="back-to")
             a(onclick="window.scrollTo(0,0);return false;",title="回到顶部")
                 img(src="http://local/global/back.png")

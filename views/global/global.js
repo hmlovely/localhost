@@ -161,7 +161,7 @@ modSort.prototype = {
 			_this.box.insertBefore(lis[i],_this.arr[0]);
 		}
     }
-}
+};
 var _list = document.getElementById("list-sort");
 _list.onchange = function () {
     if (this.value == "time_asc") {
@@ -187,15 +187,18 @@ $("#search-btn").click(function () {
         }
 
     })
-})
+});
 
 
 //瀑布流展示
-/*function Waterfall(param){
+function Waterfall(param){
     this.id = typeof param.container == 'string' ? document.getElementById(param.container) : param.container;
+    if (!this.id ){
+        return;
+    }
     this.colWidth = param.colWidth;
     this.colCount = param.colCount || 4;
-    this.cls = param.cls && param.cls != '' ? param : 'li';
+    this.cls = param.cls && param.cls != '' ? param.cls : 'list-li';
     this.init();
 }
 Waterfall.prototype = {
@@ -259,10 +262,54 @@ Waterfall.prototype = {
   _this.id.style.height = _this.maxArr(col) + "px";
     }
 };
-new Waterfall({
-    "container":"sort-ul",
-    "colWidth":244,
-    "colCount":4
-});
-*/
-//平铺
+
+document.getElementById("dis_list").onclick = function(){
+    document.getElementById("container").className = "";
+	var lis = document.getElementById("sort-ul").getElementsByTagName("li"),len = lis.length;
+	for(var i = 0; i < len; i++){
+		lis[i].style.position = "relative";
+        lis[i].style.left = "0";
+        lis[i].style.top = "0";
+        lis[i].style.width = "930px";
+        lis[i].style.height = "45px";
+	}
+    document.getElementById("sort-ul").style.height = "auto";
+};
+document.getElementById("water_pull").onclick = function(){
+    document.getElementById("container").className = "water_pull";
+	var lis = document.getElementById("sort-ul").getElementsByTagName("li"),len = lis.length;
+	for(var i = 0; i < len; i++){
+		lis[i].style.position = "absolute";
+	}
+	new Waterfall({
+		"container":"sort-ul",
+		"colWidth":235,
+		"colCount":4
+	});
+};
+document.getElementById("dis_mode").onclick = function(){
+    document.getElementById("container").className = "dis_mode";
+	var lis = document.getElementById("sort-ul").getElementsByTagName("li"),len = lis.length;
+	for(var i = 0; i < len; i++){
+		lis[i].style.position = "relative";
+        lis[i].style.left = "0";
+        lis[i].style.top = "0";
+        lis[i].style.width = "400px";
+        lis[i].style.height = "50px";
+	}
+    document.getElementById("sort-ul").style.height = "auto";
+};
+document.getElementById("water_pull").onclick = function(){
+    document.getElementById("container").className = "water_pull";
+	var lis = document.getElementById("sort-ul").getElementsByTagName("li"),len = lis.length;
+	for(var i = 0; i < len; i++){
+		lis[i].style.position = "absolute";
+        lis[i].style.width = "227px";
+        lis[i].style.height = "auto";
+	}
+	new Waterfall({
+		"container":"sort-ul",
+		"colWidth":235,
+		"colCount":4
+	});
+};

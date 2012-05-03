@@ -1,40 +1,39 @@
-body, p, ul, li, h1{
-    margin:0;
-    padding:0;
+body, p, ul, li, h1 {
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    font-size:14px;
+body {
+    font-size: 14px;
 }
 
-ul, li{
-    list-style:none;
+ul, li {
+    list-style: none;
 }
 
-#config-container{
-    position:absolute;
-    right:300px;
-    top:9px;
-
+#config-container {
+    position: absolute;
+    right: 300px;
+    top: 9px;
 }
 
-#list-sort{
-    position:absolute;
-    left:100px;
-    top:0;
-    height:22px;
-    width:80px;
+#list-sort {
+    position: absolute;
+    left: 100px;
+    top: 0;
+    height: 22px;
+    width: 80px;
 }
 
-#switch-views{
-    height:22px;
-    width:80px;
+#switch-views {
+    height: 22px;
+    width: 80px;
 }
 
-.back-to a{
-    position:absolute;
-    bottom:-490px;
-    right:260px;
+.back-to a {
+    position: absolute;
+    bottom: -490px;
+    right: 260px;
 }
 
 .txt {
@@ -42,7 +41,7 @@ ul, li{
     position: absolute;
     right: 270px;
     top: -27px;
-    border:1px solid #999;
+    border: 1px solid #999;
 }
 
 .btn {
@@ -51,20 +50,18 @@ ul, li{
     top: -28px;
 }
 
-
-
 .box {
-    width:960px;
-    margin:0 auto;
-    position:relative;
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
 }
 
 h1 {
-    font-size:20px;
+    font-size: 20px;
     color: #444;
-    padding-top:10px;
-    display:inline-block;
-    margin-top:25px;
+    padding-top: 10px;
+    display: inline-block;
+    margin-top: 25px;
     margin-left: 10px;
 }
 
@@ -79,59 +76,60 @@ h1 a:hover {
     text-shadow: 1px 1px 1px #ccf;
 }
 
-
-
 ul {
     padding: 1em;
     line-height: 180%;
-    width:960px;
+    width: 960px;
 }
 
 li {
-    width:930px;
-    position:relative;
-    height:35px;
-    overflow:hidden;
-    line-height:30px;
+    width: 930px;
+    position: relative;
+    height: 45px;
+    overflow: hidden;
+    line-height: 38px;
 }
 
-li .word{
-    width:500px;
-    overflow:hidden;
-    display:inline-block;
+li .word {
+    width: 227px;
+    overflow: hidden;
+    display: inline-block;
 }
 
 li:nth-child(2n) {
     background: #f6f6f6;
     border-radius: 2px;
-    width:930px;
+    width: 930px;
 }
 
 li span {
-    display:inline-block;
-    width:160px;
+    display: inline-block;
+    width: 160px;
 }
 
 li .revise {
-    position:absolute;
-    left:800px;
+    position: absolute;
+    left: 800px;
     cursor: pointer;
+    top: 6px;
 }
 
 li .revise img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
 }
 
 li .del {
-    position:absolute;
-    left:700px;
+    position: absolute;
+    left: 700px;
     cursor: pointer;
+    top: 6px;
+    float: right;
 }
 
 li .del img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
 }
 
 body, h1 {
@@ -139,12 +137,13 @@ body, h1 {
 }
 
 #container {
-   width:960px;
+    width: 960px;
     font-size: 14px;
-    margin:0 auto;
+    margin: 0 auto;
     border-radius: 5px 5px 5px 5px;
-    background:#fff;
-    margin-top:30px;
+    background: #fff;
+    margin-top: 30px;
+    margin-bottom: 100px;
 }
 
 #prview {
@@ -158,20 +157,19 @@ body, h1 {
 }
 
 #prview {
-    position:absolute;
-    left:600px;
-    top:250px;
+    position: absolute;
+    left: 600px;
+    top: 250px;
 }
 
-.back-to a{
-    position:absolute;
-    bottom:-300px;
-    right:110px;
+.back-to a {
     cursor: pointer;
+    position: fixed;
+    right: 5%;
+    top: 67%;
 }
 
-
-#water_pull {
+#dis_list {
     position: absolute;
     top: 130px;
     left: -20px;
@@ -180,7 +178,7 @@ body, h1 {
     cursor: pointer;
 }
 
-#dis_list {
+#water_pull {
     position: absolute;
     top: 130px;
     left: 60px;
@@ -198,7 +196,121 @@ body, h1 {
     cursor: pointer;
 }
 
-.water_pull li {
-
+.dis_mode ul {
+    background: #fff;
+    width: 930px;
+    position: absolute;
+    border-radius: 5px 5px 5px 5px;
 }
+
+.dis_mode li {
+    float: left;
+    margin-left: 52px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 400px;
+    height: 50px;
+    position: relative;
+    background: #f8f8f8;
+    border-radius: 5px 5px 5px 5px;
+    line-height: 50px;
+}
+
+.dis_mode  li .word {
+    width: 150px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.dis_mode  li span {
+    display: inline-block;
+    width: 150px;
+}
+
+.dis_mode  li .revise {
+    position: absolute;
+    left: 330px;
+    top: 10px;
+}
+
+.dis_mode  li .del {
+    position: absolute;
+    left: 270px;
+    top: 10px;
+}
+
+.water_pull {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.water_pull ul {
+    width: 930px;
+    position: relative;
+}
+
+.water_pull li {
+    width: 227px;
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    background:#dcdcdc;
+    display: block;
+    height: auto;
+}
+
+.water_pull li .word {
+}
+
+.water_pull li .word a {
+    word-wrap: break-word;
+    width: 223px;
+    overflow: hidden;
+    display: block;
+}
+
+.water_pull  li span {
+    display: inline-block;
+}
+
+
+.water_pull  li .del {
+    display:inline-block;
+    position: static;
+    width: 35px;
+    height: 35px;
+    margin-right: 50px;
+    margin-top: 0;
+}
+
+.water_pull  li .del a {
+    width: 35px;
+    height: 35px;
+    display: block;
+}
+
+.water_pull li .revise {
+    position: static;
+    width: 35px;
+    height: 35px;
+    margin-left: 50px;
+    margin-top: 0;
+    display:inline-block;
+}
+
+.water_pull li .revise a {
+    width: 35px;
+     height: 35px;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
 

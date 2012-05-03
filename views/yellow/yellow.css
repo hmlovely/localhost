@@ -21,6 +21,6 @@ body {
 }
 
 .word a:hover {
-    background: #FCD5D8;
+    background:rgba(252, 227, 52, 1);
     color: #fff;
 }

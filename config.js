@@ -8,7 +8,7 @@ exports.config.local ={
 	"path": "D:\\localhost\\views"
 };
 
-exports.config.currentView ="default";
+exports.config.currentView ="yellow";
 
 exports.config.views ={
 	"default": {

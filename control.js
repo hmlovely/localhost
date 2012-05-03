@@ -35,8 +35,20 @@ exports.GET = function (req, res) {
         res.end();
         return;
     }
+    //搜索功能
+    function search_key(str, dir, obj) {
+        //FIXME
+    }
     var root = currentConfig.path;
     root += (req.url);
+    if(-1!=req.url.indexOf("?key=")){
+        var ret;
+        var key = req.url.slice(req.url.indexOf("?key=") + 5);
+        search_key(key, req.url.slice(0, req.url.indexOf("?key=")), ret);
+        res.writeHead(200, {'Content-type':'text/plain;charset=utf-8'});
+        res.write(ret);
+        res.end();
+    }
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
     root = decodeURIComponent(root);
@@ -104,15 +116,18 @@ exports.GET = function (req, res) {
                                     }
                                 }
                             });
+
                             data.config = config;
                             if (data.path[data.path.length - 2]) {
                                 data.list[0].href = '/' + data.path[data.path.length - 2].href;
                             }
+
                             var fn = jade.compile(fs.readFileSync('./views/layout.jade'));
                             data.dataString = JSON.stringify(data);
                             res.end(fn(data));
                         }
                     )
+
                 }
                 //如果是文件则读取文件内容
                 else if (stats.isFile()) {
@@ -128,6 +143,7 @@ exports.GET = function (req, res) {
                     res.writeHead(200, {'Content-type':'text/plain"'});
                     res.end('unsupport type of file.');
                 }
+
             }
         )
     }
@@ -195,3 +211,5 @@ exports.saveConfig = function () {
     });
     fs.writeFile('config.js', _tempObj.join('\r\n\r\n'));
 };
+
+

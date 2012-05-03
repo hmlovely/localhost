@@ -16,18 +16,19 @@ html(lang="en")
                     - else
                         span=item.text
                 - })
-            input#search_input(class='txt',type='text',name='q',style='display:inline;')
-            input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;')
+            input#search_input(class='txt',type='text',name='q',style='display:inline;',id="key_input")
+            input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;',id='search-btn')
         #container
             ul(id="sort-ul")
-              - list.forEach(function(item){
-                li(time=item.time)
-                    div(class="word")
-                        a(href=item.href)=item.text
-                        span(class="del",filename=item.href)
-                            a|删除
-                        span(class="revise")
-                            a|修改
+              - list.forEach(function(item,index){
+                li(time=item.time,size=item.size)
+                  div(class="word")
+                          a(href=item.href,isdir="dir")
+                              =item.text
+                  span(class="del",filename=item.href)
+                              a|删除
+                  span(class="revise")
+                             a|修改
                - })
         #config-container
             select#switch-views
@@ -39,6 +40,8 @@ html(lang="en")
             select#list-sort
                 option(value="time_desc") 时间降序
                 option(value="time_asc") 时间升序
+                option(value="size_desc") 从大到小
+                option(value="size_asc") 从小到大
         #toolBackTo(class="back-to")
             a(onclick="window.scrollTo(0,0);return false;")
                 img(src="http://local/global/back.png")

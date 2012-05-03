@@ -25,7 +25,6 @@ $('#switch-views').bind('change', function () {
     }, 'json');
 });
 
-
 $('span.del').click(function () {
     $this = $(this);
     $.post('delete', {
@@ -55,77 +54,141 @@ $('li').hover(function () {
 
 
 //排序，按时间和大小
- var modSort = function (id, tag, prop) {
-     this.box = document.getElementById(id);
-     this.tag = tag;
-     this.arr = this.box.getElementsByTagName(this.tag);
-     this.prop = prop;
- };
+var modSort = function (id, tag, prop) {
+    this.box = document.getElementById(id);
+    this.tag = tag;
+    this.arr = this.box.getElementsByTagName(this.tag);
+    this.prop = prop;
+};
 
- modSort.prototype = {
-     asc:function () {
-         var _this = this, len = _this.arr.length, temp = 0,temp1 = 0, nums = [],sort = [];
-         for (var i = 0; i < len; i++) {
-             nums.push(new Date(_this.arr[i].getAttribute(_this.prop)));
-             sort.push(i);
-         }
-         for (var i = 0; i < len; i++) {
-             for (var j = 0; j < len - 1; j++) {
-                 if (nums[j].getTime() > nums[j + 1].getTime()) {
-                     temp = nums[j];
-                     nums[j] = nums[j + 1];
-                     nums[j + 1] = temp;
+modSort.prototype = {
+    asc:function () {
+        var _this = this, len = _this.arr.length, temp = 0, nums = [];
+        for (var i = 0; i < len; i++) {
+            nums.push(new Date(_this.arr[i].getAttribute(_this.prop)));
 
-                     temp1 = sort[j];
-                     sort[j] = sort[j + 1];
-                     sort[j + 1] = temp1;
-                 }
-             }
-         }
-         for (var i = 0; i < len; i++) {
-             for(var j = 0; j < len; j++){
-                 if (nums[i].getTime() == new Date(_this.arr[j].getAttribute(_this.prop)).getTime()) {
-                      _this.box.insertBefore(_this.arr[j],_this.arr[i]);
-                  }
-             }
-         }
-     },
-	 desc:function () {
-         var _this = this, len = _this.arr.length, temp = 0,temp1 = 0, nums = [],sort = [];
-         for (var i = 0; i < len; i++) {
-             nums.push(new Date(_this.arr[i].getAttribute(_this.prop)));
-             sort.push(i);
-         }
-         for (var i = 0; i < len; i++) {
-             for (var j = 0; j < len - 1; j++) {
-                 if (nums[j].getTime() < nums[j + 1].getTime()) {
-                     temp = nums[j];
-                     nums[j] = nums[j + 1];
-                     nums[j + 1] = temp;
+        }
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1; j++) {
+                if (nums[j].getTime() > nums[j + 1].getTime()) {
+                    temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
+                }
+            }
+        }
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len; j++) {
+                if (nums[i].getTime() == new Date(_this.arr[j].getAttribute(_this.prop)).getTime()) {
+                    _this.box.insertBefore(_this.arr[j], _this.arr[i]);
+                }
+            }
+        }
+    },
+    desc:function () {
+        var _this = this, len = _this.arr.length, temp = 0, nums = [];
+        for (var i = 0; i < len; i++) {
+            nums.push(new Date(_this.arr[i].getAttribute(_this.prop)));
+        }
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1; j++) {
+                if (nums[j].getTime() < nums[j + 1].getTime()) {
+                    temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
+                }
+            }
+        }
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len; j++) {
+                if (nums[i].getTime() == new Date(_this.arr[j].getAttribute(_this.prop)).getTime()) {
+                    _this.box.insertBefore(_this.arr[j], _this.arr[i]);
+                }
+            }
+        }
+    },
+    size_desc:function () {
+        var _this = this, len = _this.arr.length, temp = 0, temp1 = 0, nums = [], index = [];
+        for (var i = 0; i < len; i++) {
+            nums.push(parseInt(_this.arr[i].getAttribute(_this.prop)));
+            index.push(i);
+        }
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
 
-                     temp1 = sort[j];
-                     sort[j] = sort[j + 1];
-                     sort[j + 1] = temp1;
-                 }
-             }
-         }
-         for (var i = 0; i < len; i++) {
-             for(var j = 0; j < len; j++){
-                 if (nums[i].getTime() == new Date(_this.arr[j].getAttribute(_this.prop)).getTime()) {
-                      _this.box.insertBefore(_this.arr[j],_this.arr[i]);
-                  }
-             }
-         }
-     }
- }
+                    temp1 = index[j];
+                    index[j] = index[j + 1];
+                    index[j + 1] = temp1;
+                }
+            }
+        }
+		var lis = [];
+        for (var i = 0; i < len; i++) {
+			lis.push(_this.arr[index[i]]);
+        }
+		for(var i = 0; i < len; i++){
+			_this.box.insertBefore(lis[i],_this.arr[0]);
+		}
+    },
+    size_asc:function () {
+        var _this = this, len = _this.arr.length, temp = 0, temp1 = 0, nums = [], index = [];
+        for (var i = 0; i < len; i++) {
+            nums.push(parseInt(_this.arr[i].getAttribute(_this.prop)));
+            index.push(i);
+        }
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1; j++) {
+                if (nums[j] < nums[j + 1]) {
+                    temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
+
+                    temp1 = index[j];
+                    index[j] = index[j + 1];
+                    index[j + 1] = temp1;
+                }
+            }
+        }
+		var lis = [];
+        for (var i = 0; i < len; i++) {
+			lis.push(_this.arr[index[i]]);
+        }
+		for(var i = 0; i < len; i++){
+			_this.box.insertBefore(lis[i],_this.arr[0]);
+		}
+    }
+}
 var _list = document.getElementById("list-sort");
 _list.onchange = function () {
-    if(this.value == "time_asc"){
-    	new modSort("sort-ul", "li", "time").asc();
-	}else if(this.value == "time_desc"){
-		new modSort("sort-ul", "li", "time").desc();
-	}
-}
+    if (this.value == "time_asc") {
+        new modSort("sort-ul", "li", "time").asc();
+    } else if (this.value == "time_desc") {
+        new modSort("sort-ul", "li", "time").desc();
+    } else if (this.value == "size_desc") {
+        new modSort("sort-ul", "li", "size").size_desc();
+    } else if (this.value == "size_asc") {
+        new modSort("sort-ul", "li", "size").size_asc();
+    }
+};
+
+$("#search-btn").click(function () {
+    $.ajax({
+        url:window.location.href,
+        data:{"key":$("#key_input").val()},
+        success:function (ret) {
+            //FIXME
+            alert(ret);
+        }, error:function () {
+            alert(11)
+        }
+
+    })
+})
+
 
 //瀑布流展示
 //平铺

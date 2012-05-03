@@ -1,9 +1,26 @@
 body {
-    background:#dedede;
+    background:url("http://local/default/666.png");
 
 }
 
 .all {
     background:rgba(246, 246, 246, .7);
     height:35px;
+}
+
+.word a {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px;
+    margin-right:100px;
+    color:#A8A8A8;
+    font-weight:bold;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.word a:hover {
+    background: #999;
+    color: #fff;
 }

@@ -8,6 +8,7 @@ html(lang="en")
     body
         div(class="all")
         div(class="box")
+            img(src="http://local/global/sign.png",class="sign")
             h1 Path:
                 - path.forEach(function(item){
                     - if(item.href!==undefined)
@@ -18,7 +19,7 @@ html(lang="en")
                 - })
             input#search_input(class='txt',type='text',name='q',style='display:inline;',id="key_input")
             input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;',id='search-btn')
-        #container
+        #container(class="water_full")
             ul(id="sort-ul")
               - list.forEach(function(item,index){
                 li(time=item.time,size=item.size)
@@ -26,9 +27,11 @@ html(lang="en")
                           a(href=item.href,isdir="dir")
                               =item.text
                   span(class="del",filename=item.href)
-                              a|删除
+                          a(title="删除")
+                               img(src="http://local/global/del.png")
                   span(class="revise")
-                             a|修改
+                          a(title="修改")
+                               img(src="http://local/global/alert.png")
                - })
         #config-container
             select#switch-views
@@ -42,8 +45,17 @@ html(lang="en")
                 option(value="time_asc") 时间升序
                 option(value="size_desc") 从大到小
                 option(value="size_asc") 从小到大
+            #water_pull
+                a(title="瀑布流展示")
+                     img(src="http://local/global/water.png")
+            #dis_list
+                a(title="列表展示")
+                     img(src="http://local/global/list.png")
+            #dis_mode
+                a(title="图标展示")
+                     img(src="http://local/global/mode.png")
         #toolBackTo(class="back-to")
-            a(onclick="window.scrollTo(0,0);return false;")
+            a(onclick="window.scrollTo(0,0);return false;",title="回到顶部")
                 img(src="http://local/global/back.png")
         script(src="http://local/global/jquery.js")
         script(src="http://local/global/global.js")

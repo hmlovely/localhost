@@ -13,7 +13,7 @@ ul, li{
 
 #config-container{
     position:absolute;
-    right:410px;
+    right:300px;
     top:9px;
 
 }
@@ -40,14 +40,14 @@ ul, li{
 .txt {
     height: 18px;
     position: absolute;
-    right: 400px;
+    right: 270px;
     top: -27px;
     border:1px solid #999;
 }
 
 .btn {
     position: absolute;
-    right: 340px;
+    right: 210px;
     top: -28px;
 }
 
@@ -65,6 +65,7 @@ h1 {
     padding-top:10px;
     display:inline-block;
     margin-top:25px;
+    margin-left: 10px;
 }
 
 h1 a {
@@ -84,17 +85,6 @@ ul {
     padding: 1em;
     line-height: 180%;
     width:960px;
-}
-
-#container a {
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 3px;
-    padding: 2px;
-    margin-right:100px;
-    color:#A8A8A8;
-    font-weight:bold;
-    white-space: nowrap;
 }
 
 li {
@@ -125,15 +115,23 @@ li span {
 li .revise {
     position:absolute;
     left:800px;
+    cursor: pointer;
+}
+
+li .revise img {
+    width: 30px;
+    height: 30px;
 }
 
 li .del {
     position:absolute;
     left:700px;
+    cursor: pointer;
 }
 
-#container a:hover {
-    background: #afa;
+li .del img {
+    width: 30px;
+    height: 30px;
 }
 
 body, h1 {
@@ -146,7 +144,7 @@ body, h1 {
     margin:0 auto;
     border-radius: 5px 5px 5px 5px;
     background:#fff;
-    margin-top:50px;
+    margin-top:30px;
 }
 
 #prview {
@@ -167,7 +165,40 @@ body, h1 {
 
 .back-to a{
     position:absolute;
-    bottom:-250px;
+    bottom:-300px;
     right:110px;
+    cursor: pointer;
+}
+
+
+#water_pull {
+    position: absolute;
+    top: 130px;
+    left: -20px;
+    width: 42px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#dis_list {
+    position: absolute;
+    top: 130px;
+    left: 60px;
+    width: 42px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#dis_mode {
+    position: absolute;
+    top: 130px;
+    left: 135px;
+    width: 42px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.water_pull li {
+
 }
 

@@ -255,12 +255,16 @@ body, h1 {
     float: left;
     margin-left: 5px;
     margin-bottom: 5px;
-    background:#dcdcdc;
+    background: #dcdcdc;
     display: block;
     height: auto;
 }
 
 .water_pull li .word {
+}
+
+.word a {
+    white-space: nowrap;
 }
 
 .water_pull li .word a {
@@ -274,9 +278,8 @@ body, h1 {
     display: inline-block;
 }
 
-
 .water_pull  li .del {
-    display:inline-block;
+    display: inline-block;
     position: static;
     width: 35px;
     height: 35px;
@@ -296,12 +299,12 @@ body, h1 {
     height: 35px;
     margin-left: 50px;
     margin-top: 0;
-    display:inline-block;
+    display: inline-block;
 }
 
 .water_pull li .revise a {
     width: 35px;
-     height: 35px;
+    height: 35px;
     display: block;
 }
 

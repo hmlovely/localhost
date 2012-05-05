@@ -320,7 +320,7 @@ function modifyFileName(ev) {
             if ($this.parents('span.revise').size() > 0 || $this.hasClass('revise')) {
                 var worldObj = $this.parents('li').find('div.word');
                 if (worldObj.find('input.edit').size() == 0) {
-                    worldObj.append('<span class="edit"><input type="text" class="edit" value="' + decodeURIComponent(worldObj.find('a').attr('href').replace('/', '')) + '"><span class="status">Esc：取消更名，Enter：确认更名</span></span>');
+                    worldObj.append('<span class="edit"><input type="text" class="edit" value="' + decodeURIComponent(worldObj.find('a').attr('filename').replace('/', '')) + '"><span class="status">Esc：取消更名，Enter：确认更名</span></span>');
                 }
                 worldObj.find('input.edit').focus();
             }

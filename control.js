@@ -72,7 +72,8 @@ exports.GET = function (req, res) {
                                             text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
                                             isDirecotory:_stats.isDirectory(),
                                             time:_stats.ctime,
-                                            size:_stats.size
+                                            size:_stats.size,
+                                            filename:encodeURIComponent(item)
                                         });
 
                                     } catch (e) {

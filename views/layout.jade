@@ -50,7 +50,7 @@ html(lang="en")
                     - if(item.isDirecotory===true)
                        a.path(href=item.href,isdir="dir")=item.text
                     - else
-                       a.path(href=item.href,isdir="file")=item.text
+                       a.path(href=item.href,isdir="file",filename=item.filename)=item.text
                   span(class="del",filename=item.href)
                        a(title="删除")
                             img(src="http://local/global/del.png")

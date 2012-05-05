@@ -174,9 +174,7 @@ exports.POST = function (req, res) {
         req.addListener('end', function () {
             var filename = querystring.parse(postData.join(''));
             var files = config[req.headers.host].path + decodeURIComponent(filename.files);
-            console.log(filename);
             if (filename.isdir === 'file') {
-                console.log(files);
                 fs.unlink(files, function (err) {
                     if (!err) {
                         res.end(JSON.stringify({success:true}))
@@ -187,9 +185,7 @@ exports.POST = function (req, res) {
             } else if (filename.isdir === 'dir') {
                 files = files.replace(/\//gmi, '\\');
                 try {
-                    exec('del ' + files + ' /F /S /Q', function () {
-                        exec('rd ' + files + ' /S /Q');
-                    });
+                    exec('rd /S /Q ' + files);
                     res.end(JSON.stringify({'success':'done'}));
                 } catch (e) {
                     res.end(JSON.stringify({"error":e.toString()}));

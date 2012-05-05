@@ -125,7 +125,6 @@ exports.GET = function (req, res) {
                             res.end(fn(data));
                         }
                     )
-
                 }
                 //如果是文件则读取文件内容
                 else if (stats.isFile()) {
@@ -182,10 +181,11 @@ exports.POST = function (req, res) {
                     }
                 });
             } else if (filename.isdir === 'dir') {
-                files = files.replace(/\//, '\\');
+                files = files.replace(/\//gmi, '\\');
                 try {
                     exec('del ' + files + ' /F /S /Q', function () {
                         exec('rd ' + files + ' /S /Q');
+
                     });
                     res.end(JSON.stringify({'success':'done'}));
                 } catch (e) {

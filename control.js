@@ -70,7 +70,7 @@ exports.GET = function (req, res) {
                                         data.list.push({
                                             href:_path + '/' + encodeURIComponent(item),
                                             text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
-                                            //isDirecotory:_stats.isDirectory(),
+                                            isDirecotory:_stats.isDirectory(),
                                             time:_stats.ctime,
                                             size:_stats.size
                                         });
@@ -156,6 +156,8 @@ exports.POST = function (req, res) {
     var _url = url.parse('http://' + req.headers.host + req.url);
     var postData = [];
     if (_url.pathname === '/modifyConfig') {
+        console.log('Modify Config!');
+
         req.addListener("data", function (postDataChunk) {
             postData.push(postDataChunk);
         });
@@ -164,7 +166,7 @@ exports.POST = function (req, res) {
             res.end(JSON.stringify(config));
             exports.saveConfig();
         });
-    } else if ('/delete') {
+    } else if (_url.pathname === '/delete') {
         postData = [];
         req.addListener("data", function (postDataChunk) {
             postData.push(postDataChunk);
@@ -172,7 +174,9 @@ exports.POST = function (req, res) {
         req.addListener('end', function () {
             var filename = querystring.parse(postData.join(''));
             var files = config[req.headers.host].path + decodeURIComponent(filename.files);
+            console.log(filename);
             if (filename.isdir === 'file') {
+                console.log(files);
                 fs.unlink(files, function (err) {
                     if (!err) {
                         res.end(JSON.stringify({success:true}))
@@ -185,7 +189,6 @@ exports.POST = function (req, res) {
                 try {
                     exec('del ' + files + ' /F /S /Q', function () {
                         exec('rd ' + files + ' /S /Q');
-
                     });
                     res.end(JSON.stringify({'success':'done'}));
                 } catch (e) {
@@ -196,8 +199,8 @@ exports.POST = function (req, res) {
             }
             postData = [];
         });
-    } else {
-
+    } else if (_url.pathname === "/rename") {
+        console.log('Rename file!');
     }
 };
 

@@ -91,7 +91,6 @@ li {
 }
 
 li .word {
-    width: 227px;
     overflow: hidden;
     display: inline-block;
 }
@@ -104,7 +103,6 @@ li:nth-child(2n) {
 
 li span {
     display: inline-block;
-    width: 160px;
 }
 
 li .revise {
@@ -224,7 +222,6 @@ body, h1 {
 
 .dis_mode  li span {
     display: inline-block;
-    width: 150px;
 }
 
 .dis_mode  li .revise {
@@ -308,12 +305,33 @@ body, h1 {
     display: block;
 }
 
+p.return-parent {
+    padding: 1em 1em 0 1em;
+}
 
+p.return-parent a {
+    color: #555;
+    font-weight: bold;
+    text-decoration: none;
+}
 
+#sort-ul li span.edit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 12px;
+    width: 50%;
+    color: #888;
+}
 
-
-
-
-
+#sort-ul li span.edit input.edit {
+    display: inline-block;
+    width: 50%;
+    height: 20px;
+    border: solid 1px #999;
+    padding: 5px;
+    outline: none;
+    margin-right: 12px;
+}
 
 

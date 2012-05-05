@@ -41,12 +41,16 @@ html(lang="en")
                     a(title="平铺展示")
                          img(src="http://local/global/mode.png")
         #container
+            p.return-parent
+                a(href=returnParent.href) .. Parent Directory
             ul(id="sort-ul")
               - list.forEach(function(item,index){
                 li(time=item.time,size=item.size,class="list-li")
                   div(class="word")
-                       a(href=item.href,isdir="dir")
-                            =item.text
+                    - if(item.isDirecotory===true)
+                       a(href=item.href,isdir="dir")=item.text
+                    - else
+                       a(href=item.href,isdir="file")=item.text
                   span(class="del",filename=item.href)
                        a(title="删除")
                             img(src="http://local/global/del.png")

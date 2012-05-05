@@ -39,9 +39,10 @@ exports.GET = function (req, res) {
     function search_key(str, dir, obj) {
         //FIXME
     }
+
     var root = currentConfig.path;
     root += (req.url);
-    if(-1!=req.url.indexOf("?key=")){
+    if (-1 != req.url.indexOf("?key=")) {
         var ret;
         var key = req.url.slice(req.url.indexOf("?key=") + 5);
         search_key(key, req.url.slice(0, req.url.indexOf("?key=")), ret);
@@ -78,14 +79,12 @@ exports.GET = function (req, res) {
                                 }
                             });
 
-                            //在数组最前端，增加一个元素，用以返回上一层目录
                             //todo:待优化，判断当前是否已经在顶层，如果是，则不显示 Parent Direcotry
-                            /*data.list.unshift({
+                            data.returnParent = {
                                 //由于window和unix操作系统，路径的 / 和 \意义不一样，所以这里需要对win进行处理
                                 href:path.normalize(_path + '/..').replace(/\\/gi, '/'),
-                                text:"Parent Directory",
                                 isDirecotory:true
-                            });*/
+                            };
                             //页面标题
                             data['pageTitle'] = decodeURIComponent(path.normalize(_path));
                             //URL路径
@@ -118,9 +117,6 @@ exports.GET = function (req, res) {
                             });
 
                             data.config = config;
-                            if (data.path[data.path.length - 2]) {
-                                data.list[0].href = '/' + data.path[data.path.length - 2].href;
-                            }
 
                             var fn = jade.compile(fs.readFileSync('./views/layout.jade'));
                             data.dataString = JSON.stringify(data);

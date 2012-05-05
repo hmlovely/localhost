@@ -63,21 +63,23 @@ exports.GET = function (req, res) {
                                 data = {
                                     list:[]
                                 };
-                            files.forEach(function (item) {
-                                try {
-                                    var _stats = fs.statSync(root + '/' + item);
-                                    data.list.push({
-                                        href:_path + '/' + encodeURIComponent(item),
-                                        text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
-                                        //isDirecotory:_stats.isDirectory(),
-                                        time:_stats.ctime,
-                                        size:_stats.size
-                                    });
+                            if (files) {
+                                files.forEach(function (item) {
+                                    try {
+                                        var _stats = fs.statSync(root + '/' + item);
+                                        data.list.push({
+                                            href:_path + '/' + encodeURIComponent(item),
+                                            text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
+                                            //isDirecotory:_stats.isDirectory(),
+                                            time:_stats.ctime,
+                                            size:_stats.size
+                                        });
 
-                                } catch (e) {
-                                    console.log('Error:' + item);
-                                }
-                            });
+                                    } catch (e) {
+                                        console.log('Error:' + item);
+                                    }
+                                });
+                            }
 
                             //todo:待优化，判断当前是否已经在顶层，如果是，则不显示 Parent Direcotry
                             data.returnParent = {

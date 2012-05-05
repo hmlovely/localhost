@@ -155,6 +155,8 @@ exports.GET = function (req, res) {
 exports.POST = function (req, res) {
     var _url = url.parse('http://' + req.headers.host + req.url);
     var postData = [];
+
+
     if (_url.pathname === '/modifyConfig') {
         console.log('Modify Config!');
 
@@ -197,6 +199,23 @@ exports.POST = function (req, res) {
         });
     } else if (_url.pathname === "/rename") {
         console.log('Rename file!');
+        req.addListener("data", function (postDataChunk) {
+            postData.push(postDataChunk);
+        });
+        req.addListener('end', function () {
+            var renamefile = querystring.parse(postData.join());
+            var origin = config[req.headers.host].path + decodeURIComponent(renamefile.origin);
+            var to = config[req.headers.host].path + '\\' + renamefile.to;
+            origin = origin.replace(/\//gmi, '\\');
+            to = to.replace(/\//gmi, '\\');
+            fs.rename(origin, to, function (err) {
+                if (!err) {
+                    res.end(JSON.stringify({success:true}));
+                } else {
+                    res.end(JSON.stringify({success:false}));
+                }
+            })
+        });
     }
 };
 

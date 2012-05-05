@@ -320,7 +320,7 @@ function modifyFileName(ev) {
             if ($this.parents('span.revise').size() > 0 || $this.hasClass('revise')) {
                 var worldObj = $this.parents('li').find('div.word');
                 if (worldObj.find('input.edit').size() == 0) {
-                    worldObj.append('<span class="edit"><input type="text" class="edit" value="' + worldObj.find('a').html() + '"><span class="status">Esc：取消更名，Enter：确认更名</span></span>');
+                    worldObj.append('<span class="edit"><input type="text" class="edit" value="' + decodeURIComponent(worldObj.find('a').attr('href').replace('/', '')) + '"><span class="status">Esc：取消更名，Enter：确认更名</span></span>');
                 }
                 worldObj.find('input.edit').focus();
             }
@@ -337,9 +337,22 @@ function modifyFileName(ev) {
                     break;
                 //如果按了Enter键
                 case 13:
-                    $.post('modifyConfig', {currentView:this.value}, function () {
-                        window.location.reload();
-                    }, 'json');
+                    var $this = $(ev.target);
+                    if ($this.hasClass('edit') && $this[0].nodeName === 'INPUT') {
+                        var origin = $this.parents('li').find('a.path').attr('href');
+                        var to = $.trim($this[0].value);
+                        $.post('rename', {
+                            origin:origin,
+                            to:to
+                        }, function (data) {
+                            if (data.success === true) {
+                                window.location.reload();
+                            } else {
+                                alert('重命名失败');
+                                $this.parents('span.edit').remove();
+                            }
+                        }, 'json');
+                    }
                     break;
             }
             break;
@@ -348,3 +361,4 @@ function modifyFileName(ev) {
 
 $(document).on('keydown', modifyFileName);
 $(document).on('click', modifyFileName);
+

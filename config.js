@@ -1,11 +1,11 @@
-exports.config={};
+﻿exports.config={};
 
 exports.config.localhost ={
-	"path": "D:\\phonegap-phonegap-1564354"
+	"path": "D:\\"
 };
 
 exports.config.local ={
-	"path": "C:\\works\\localhost\\views"
+	"path": "D:\\localhost\\views"
 };
 
 exports.config.currentView ="pink";

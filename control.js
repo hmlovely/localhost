@@ -211,14 +211,14 @@ exports.POST = function (req, res) {
             var to = config[req.headers.host].path + path + '\\' + renamefile.to;
             origin = origin.replace(/\//gmi, '\\');
             to = to.replace(/\//gmi, '\\');
+            console.log(path,to,origin)
             fs.rename(origin, to, function (err) {
-                console.log(err);
                 if (!err) {
                     res.end(JSON.stringify({success:true}));
                 } else {
                     res.end(JSON.stringify({success:false}));
                 }
-            })
+            });
         });
     }
 };

@@ -26,16 +26,18 @@ if (!window.console) {
     }
 }
 
+var _host = 'http://' + window.location.host;
+
 /*改变配置信息*/
 $('#switch-views').bind('change', function () {
-    $.post('modifyConfig', {currentView:this.value}, function () {
+    $.post(window.location.host + '/modifyConfig', {currentView:this.value}, function () {
         window.location.reload();
     }, 'json');
 });
 
 $('span.del').click(function () {
     $this = $(this);
-    $.post('delete', {
+    $.post(_host + '/delete', {
         'files':$this.parent('li').find('>div.word>a').attr('href'),
         'isdir':$this.parent('li').find('>div.word>a').attr('isdir')
     }, function (data) {
@@ -183,17 +185,17 @@ _list.onchange = function () {
 };
 
 $("#search-btn").click(function () {
-    $.ajax({
-        url:window.location.href,
-        data:{"key":$("#key_input").val()},
-        success:function (ret) {
-            //FIXME
-            alert(ret);
-        }, error:function () {
-            alert(11)
-        }
+    /* $.ajax({
+     url:_host,
+     data:{"key":$("#key_input").val()},
+     success:function (ret) {
+     //FIXME
+     alert(ret);
+     }, error:function () {
+     alert(11)
+     }
 
-    })
+     })*/
 });
 
 //瀑布流展示
@@ -349,7 +351,7 @@ function modifyFileName(ev) {
                         var path = $this.parents('li').find('a.path').attr('path');
                         var origin = $this.parents('li').find('a.path').attr('filename');
                         var to = $.trim($this[0].value);
-                        $.post('rename', {
+                        $.post(_host + '/rename', {
                             path:path,
                             origin:origin,
                             to:to

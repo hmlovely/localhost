@@ -5,6 +5,7 @@ body, p, ul, li, h1 {
 
 body {
     font-size: 14px;
+    overflow-y: scroll;
 }
 
 ul, li {
@@ -144,6 +145,19 @@ body, h1 {
     margin-bottom: 100px;
 }
 
+#container li img.preview {
+    display: none;
+    width: 227px;
+}
+
+#container.water_pull {
+    background: #eea;
+}
+
+#container.water_pull li img.preview {
+    display: inline-block;
+}
+
 #prview {
     position: fixed;
     right: 1em;
@@ -248,13 +262,13 @@ body, h1 {
 }
 
 .water_pull li {
-    width: 227px;
+    width: 200px;
     float: left;
-    margin-left: 5px;
-    margin-bottom: 5px;
+    margin: 22px;
     background: #dcdcdc;
     display: block;
     height: auto;
+    box-shadow: 0 0 3px #a60;
 }
 
 .water_pull li .word {
@@ -266,7 +280,7 @@ body, h1 {
 
 .water_pull li .word a {
     word-wrap: break-word;
-    width: 223px;
+    width: 200px;
     overflow: hidden;
     display: block;
 }
@@ -334,4 +348,11 @@ p.return-parent a {
     margin-right: 12px;
 }
 
+#container.water_pull #sort-ul li span.edit {
+    width: 100%;
+    color: #000;
+}
 
+#container.water_pull #sort-ul li span.edit input.edit {
+    width: 100%;
+}

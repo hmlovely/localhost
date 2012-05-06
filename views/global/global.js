@@ -26,18 +26,20 @@ if (!window.console) {
     }
 }
 
+var _host = 'http://' + window.location.host;
+
 /*改变配置信息*/
 $('#switch-views').bind('change', function () {
-    $.post('modifyConfig', {currentView:this.value}, function () {
+    $.post(_host + '/modifyConfig', {currentView:this.value}, function () {
         window.location.reload();
     }, 'json');
 });
 
 $('span.del').click(function () {
     $this = $(this);
-    $.post('delete', {
+    $.post(_host + '/delete', {
         'files':$this.parent('li').find('>div.word>a').attr('href'),
-        'isdir':$this.parent('li').find('>div.word>a').attr('isdir')
+        'isdir':$this.parent('li').attr('isdir')
     }, function (data) {
         $this.parent('li').remove();
     }, 'text');
@@ -45,19 +47,19 @@ $('span.del').click(function () {
 });
 
 
-$(document.body).append('<p id="prview"><img src=""></p>');
-$prviewObj = $('#prview');
-$('li').hover(function () {
-    var href = $(this).find('a').eq(0).attr('href'),
-        _href = href;
-    _href = _href.substring(_href.lastIndexOf('.') + 1);
-    if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
-        $prviewObj.show();
-        $prviewObj.find('img').eq(0).attr('src', href);
-    }
-}, function () {
-    $prviewObj.hide();
-});
+/*$(document.body).append('<p id="prview"><img src=""></p>');
+ $prviewObj = $('#prview');
+ $('li').hover(function () {
+ var href = $(this).find('a').eq(0).attr('href'),
+ _href = href;
+ _href = _href.substring(_href.lastIndexOf('.') + 1);
+ if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
+ $prviewObj.show();
+ $prviewObj.find('img').eq(0).attr('src', href);
+ }
+ }, function () {
+ $prviewObj.hide();
+ });*/
 
 
 //排序，按时间和大小
@@ -169,6 +171,7 @@ modSort.prototype = {
         }
     }
 };
+
 var _list = document.getElementById("list-sort");
 _list.onchange = function () {
     if (this.value == "time_asc") {
@@ -183,18 +186,43 @@ _list.onchange = function () {
 };
 
 $("#search-btn").click(function () {
-    $.ajax({
-        url:window.location.href,
-        data:{"key":$("#key_input").val()},
-        success:function (ret) {
-            //FIXME
-            alert(ret);
-        }, error:function () {
-            alert(11)
-        }
-
-    })
+    /* $.ajax({
+     url:_host,
+     data:{"key":$("#key_input").val()},
+     success:function (ret) {
+     //FIXME
+     alert(ret);
+     }, error:function () {
+     alert(11)
+     }
+     })*/
 });
+(function () {
+    var liObj = document.getElementById('sort-ul').getElementsByTagName('li');
+    $('#key_input').bind('keydown', function (ev) {
+        setTimeout(function () {
+            var value = $.trim(ev.target.value);
+            $(liObj).each(function (index, obj) {
+                var $obj = $(obj), filename = $obj.attr('filename');
+                if (filename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) > -1) {
+                    $obj.slideDown(200, function () {
+                        if ($('#container').hasClass('water_pull')) {
+                            console.log(123)
+                            new Waterfall({
+                                "container":"sort-ul",
+                                "colWidth":235,
+                                "colCount":4
+                            });
+                        }
+                    });
+                } else {
+                    $obj.hide();
+                }
+            });
+        }, 0);
+    });
+})();
+
 
 //瀑布流展示
 function Waterfall(param) {
@@ -207,6 +235,7 @@ function Waterfall(param) {
     this.cls = param.cls && param.cls != '' ? param.cls : 'list-li';
     this.init();
 }
+
 Waterfall.prototype = {
     getByClass:function (cls, p) {
         var arr = [], reg = new RegExp("(^|\\s+)" + cls + "(\\s+|$)", "g");
@@ -310,7 +339,7 @@ document.getElementById("water_pull").onclick = function () {
     var lis = document.getElementById("sort-ul").getElementsByTagName("li"), len = lis.length;
     for (var i = 0; i < len; i++) {
         lis[i].style.position = "absolute";
-        lis[i].style.width = "227px";
+        lis[i].style.width = "217px";
         lis[i].style.height = "auto";
     }
     new Waterfall({
@@ -327,7 +356,7 @@ function modifyFileName(ev) {
             if ($this.parents('span.revise').size() > 0 || $this.hasClass('revise')) {
                 var worldObj = $this.parents('li').find('div.word');
                 if (worldObj.find('input.edit').size() == 0) {
-                    worldObj.append('<span class="edit"><input type="text" class="edit" value="' + decodeURIComponent(worldObj.find('a').attr('filename').replace('/', '')) + '"><span class="status">Esc：取消更名，Enter：确认更名</span></span>');
+                    worldObj.append('<span class="edit"><input type="text" class="edit" value="' + decodeURIComponent($this.parents('li').attr('filename').replace('/', '')) + '"><span class="status">Esc：取消更名，Enter：确认更名</span></span>');
                 }
                 worldObj.find('input.edit').focus();
             }
@@ -346,10 +375,10 @@ function modifyFileName(ev) {
                 case 13:
                     var $this = $(ev.target);
                     if ($this.hasClass('edit') && $this[0].nodeName === 'INPUT') {
-                        var path = $this.parents('li').find('a.path').attr('path');
-                        var origin = $this.parents('li').find('a.path').attr('filename');
+                        var path = $this.parents('li').attr('path');
+                        var origin = $this.parents('li').attr('filename');
                         var to = $.trim($this[0].value);
-                        $.post('rename', {
+                        $.post(_host + '/rename', {
                             path:path,
                             origin:origin,
                             to:to

@@ -312,7 +312,7 @@ document.getElementById("water_pull").onclick = function () {
     var lis = document.getElementById("sort-ul").getElementsByTagName("li"), len = lis.length;
     for (var i = 0; i < len; i++) {
         lis[i].style.position = "absolute";
-        lis[i].style.width = "227px";
+        lis[i].style.width = "217px";
         lis[i].style.height = "auto";
     }
     new Waterfall({

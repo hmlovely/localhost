@@ -44,15 +44,12 @@ html(lang="en")
             p.return-parent
                 a(href=returnParent.href) .. Parent Directory
             ul(id="sort-ul")
-              - list.forEach(function(item,index){
-                li(time=item.time,size=item.size,class="list-li")
+              - list.forEach(function(item){
+                li(id='list'+item.index,time=item.time,size=item.size,class="list-li",isdir=(function(){ return item.isDirecotory?'dir':'file' })(),filename=item.filename,path=item.path)
                   - if(item.isImg)
                     img.preview(src=item.href)
                   div(class="word")
-                    - if(item.isDirecotory===true)
-                       a.path(href=item.href,isdir="dir",filename=item.filename,path=item.path)=item.text
-                    - else
-                       a.path(href=item.href,isdir="file",filename=item.filename,path=item.path)=item.text
+                       a.path(href=item.href)=item.text
                   span(class="del",filename=item.href)
                        a(title="删除")
                             img(src="http://local/global/del.png")
@@ -67,4 +64,5 @@ html(lang="en")
         script(src="http://local/global/global.js")
         each js in config.views[config.currentView].jsLink
             script(src="http://local/#{js}.js")
-
+        script|var jsonData=
+            !{dataString}

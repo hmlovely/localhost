@@ -64,7 +64,7 @@ exports.GET = function (req, res) {
                                     list:[]
                                 };
                             if (files) {
-                                files.forEach(function (item) {
+                                files.forEach(function (item, index) {
                                     try {
                                         var _stats = fs.statSync(root + '/' + item);
                                         data.list.push({
@@ -75,7 +75,8 @@ exports.GET = function (req, res) {
                                             size:_stats.size,
                                             filename:encodeURIComponent(item),
                                             path:_path,
-                                            isImg:/(png|jpg|jpeg|bmp|gif)/gi.test(item)
+                                            isImg:/(png|jpg|jpeg|bmp|gif)/gi.test(item),
+                                            index:index
                                         });
 
                                     } catch (e) {
@@ -84,7 +85,6 @@ exports.GET = function (req, res) {
                                 });
                             }
 
-                            //todo:待优化，判断当前是否已经在顶层，如果是，则不显示 Parent Direcotry
                             data.returnParent = {
                                 //由于window和unix操作系统，路径的 / 和 \意义不一样，所以这里需要对win进行处理
                                 href:path.normalize(_path + '/..').replace(/\\/gi, '/'),
@@ -179,8 +179,10 @@ exports.POST = function (req, res) {
         req.addListener('end', function () {
             var filename = querystring.parse(postData.join(''));
             var files = config[req.headers.host].path + decodeURIComponent(filename.files);
+            files = files.replace(/\//gmi, '\\');
             if (filename.isdir === 'file') {
                 fs.unlink(files, function (err) {
+                    console.log(err);
                     if (!err) {
                         res.end(JSON.stringify({success:true}))
                     } else {

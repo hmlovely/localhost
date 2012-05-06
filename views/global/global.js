@@ -201,13 +201,22 @@ $("#search-btn").click(function () {
     var liObj = document.getElementById('sort-ul').getElementsByTagName('li');
     $('#key_input').bind('keydown', function (ev) {
         setTimeout(function () {
-            var value = ev.target.value;
+            var value = $.trim(ev.target.value);
             $(liObj).each(function (index, obj) {
                 var $obj = $(obj), filename = $obj.attr('filename');
-                if (filename.indexOf(value) > -1) {
-                    $obj.slideDown(200);
+                if (filename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) > -1) {
+                    $obj.slideDown(200, function () {
+                        if ($('#container').hasClass('water_pull')) {
+                            console.log(123)
+                            new Waterfall({
+                                "container":"sort-ul",
+                                "colWidth":235,
+                                "colCount":4
+                            });
+                        }
+                    });
                 } else {
-                    $obj.slideUp(100);
+                    $obj.hide();
                 }
             });
         }, 0);
@@ -226,6 +235,7 @@ function Waterfall(param) {
     this.cls = param.cls && param.cls != '' ? param.cls : 'list-li';
     this.init();
 }
+
 Waterfall.prototype = {
     getByClass:function (cls, p) {
         var arr = [], reg = new RegExp("(^|\\s+)" + cls + "(\\s+|$)", "g");

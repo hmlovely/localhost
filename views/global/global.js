@@ -18,6 +18,14 @@
  }, 300);
  */
 
+if (!window.console) {
+    window.console = {
+        log:function (str) {
+            window.status = str;
+        }
+    }
+}
+
 /*改变配置信息*/
 $('#switch-views').bind('change', function () {
     $.post('modifyConfig', {currentView:this.value}, function () {
@@ -37,7 +45,6 @@ $('span.del').click(function () {
 });
 
 
-document.title += '--HELLO';
 $(document.body).append('<p id="prview"><img src=""></p>');
 $prviewObj = $('#prview');
 $('li').hover(function () {
@@ -339,9 +346,11 @@ function modifyFileName(ev) {
                 case 13:
                     var $this = $(ev.target);
                     if ($this.hasClass('edit') && $this[0].nodeName === 'INPUT') {
-                        var origin = $this.parents('li').find('a.path').attr('href');
+                        var path = $this.parents('li').find('a.path').attr('path');
+                        var origin = $this.parents('li').find('a.path').attr('filename');
                         var to = $.trim($this[0].value);
                         $.post('rename', {
+                            path:path,
                             origin:origin,
                             to:to
                         }, function (data) {

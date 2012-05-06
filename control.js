@@ -73,7 +73,8 @@ exports.GET = function (req, res) {
                                             isDirecotory:_stats.isDirectory(),
                                             time:_stats.ctime,
                                             size:_stats.size,
-                                            filename:encodeURIComponent(item)
+                                            filename:encodeURIComponent(item),
+                                            path:_path
                                         });
 
                                     } catch (e) {
@@ -205,11 +206,13 @@ exports.POST = function (req, res) {
         });
         req.addListener('end', function () {
             var renamefile = querystring.parse(postData.join());
-            var origin = config[req.headers.host].path + decodeURIComponent(renamefile.origin);
-            var to = config[req.headers.host].path + '\\' + renamefile.to;
+            var path = renamefile.path;
+            var origin = config[req.headers.host].path + path + '\\' + decodeURIComponent(renamefile.origin);
+            var to = config[req.headers.host].path + path + '\\' + renamefile.to;
             origin = origin.replace(/\//gmi, '\\');
             to = to.replace(/\//gmi, '\\');
             fs.rename(origin, to, function (err) {
+                console.log(err);
                 if (!err) {
                     res.end(JSON.stringify({success:true}));
                 } else {

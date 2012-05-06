@@ -48,9 +48,9 @@ html(lang="en")
                 li(time=item.time,size=item.size,class="list-li")
                   div(class="word")
                     - if(item.isDirecotory===true)
-                       a.path(href=item.href,isdir="dir",filename=item.filename)=item.text
+                       a.path(href=item.href,isdir="dir",filename=item.filename,path=item.path)=item.text
                     - else
-                       a.path(href=item.href,isdir="file",filename=item.filename)=item.text
+                       a.path(href=item.href,isdir="file",filename=item.filename,path=item.path)=item.text
                   span(class="del",filename=item.href)
                        a(title="删除")
                             img(src="http://local/global/del.png")

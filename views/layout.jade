@@ -17,9 +17,8 @@ html(lang="en")
                     - else
                         span=item.text
                 - })
-            input#search_input(class='txt',type='text',name='q',style='display:inline;',id="key_input")
-            input#search_engine_button(class='btn',type='submit',value='搜索',style='display:inline;',id='search-btn')
         #config-container
+            input#search_input(class='txt',type='text',name='q',style='display:inline;',id="key_input",value="搜索")
             select#switch-views
                 each item in Object.keys(config.views)
                     - if (item===config.currentView)

@@ -36,20 +36,11 @@ exports.GET = function (req, res) {
         return;
     }
     //搜索功能
-    function search_key(str, dir, obj) {
-        //FIXME
-    }
+
 
     var root = currentConfig.path;
     root += (req.url);
-    if (-1 != req.url.indexOf("?key=")) {
-        var ret;
-        var key = req.url.slice(req.url.indexOf("?key=") + 5);
-        search_key(key, req.url.slice(0, req.url.indexOf("?key=")), ret);
-        res.writeHead(200, {'Content-type':'text/plain;charset=utf-8'});
-        res.write(ret);
-        res.end();
-    }
+
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
     root = decodeURIComponent(root);

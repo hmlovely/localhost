@@ -185,26 +185,15 @@ _list.onchange = function () {
     }
 };
 
-$("#search-btn").click(function () {
-    /* $.ajax({
-     url:_host,
-     data:{"key":$("#key_input").val()},
-     success:function (ret) {
-     //FIXME
-     alert(ret);
-     }, error:function () {
-     alert(11)
-     }
-     })*/
-});
+
 (function () {
     var liObj = document.getElementById('sort-ul').getElementsByTagName('li');
-    $('#key_input').bind('keydown', function (ev) {
+    $('#key_input').bind('keydown keypress', function (ev) {
         setTimeout(function () {
             var value = $.trim(ev.target.value);
             $(liObj).each(function (index, obj) {
                 var $obj = $(obj), filename = $obj.attr('filename');
-                if (filename.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) > -1) {
+                if (decodeURIComponent(filename.toLocaleLowerCase()).indexOf(decodeURIComponent(value.toLocaleLowerCase())) > -1) {
                     $obj.slideDown(200, function () {
                         if ($('#container').hasClass('water_pull')) {
                             console.log(123)
@@ -349,6 +338,7 @@ document.getElementById("water_pull").onclick = function () {
     });
 };
 
+//重命名
 function modifyFileName(ev) {
     switch (ev.type) {
         case "click":

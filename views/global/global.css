@@ -40,15 +40,9 @@ ul, li {
 .txt {
     height: 18px;
     position: absolute;
-    right: 270px;
-    top: -27px;
+    right: 120px;
+    top: -2px;
     border: 1px solid #999;
-}
-
-.btn {
-    position: absolute;
-    right: 210px;
-    top: -28px;
 }
 
 .box {

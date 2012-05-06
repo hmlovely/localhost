@@ -5,6 +5,7 @@ body, p, ul, li, h1 {
 
 body {
     font-size: 14px;
+    overflow-y: scroll;
 }
 
 ul, li {

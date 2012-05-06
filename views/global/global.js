@@ -202,8 +202,13 @@ $("#search-btn").click(function () {
     $('#key_input').bind('keydown', function (ev) {
         setTimeout(function () {
             var value = ev.target.value;
-            $(liObj).each(function (obj) {
-                console.log(obj)
+            $(liObj).each(function (index, obj) {
+                var $obj = $(obj), filename = $obj.attr('filename');
+                if (filename.indexOf(value) > -1) {
+                    $obj.slideDown(200);
+                } else {
+                    $obj.slideUp(100);
+                }
             });
         }, 0);
     });

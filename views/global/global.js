@@ -30,7 +30,7 @@ var _host = 'http://' + window.location.host;
 
 /*改变配置信息*/
 $('#switch-views').bind('change', function () {
-    $.post(window.location.host + '/modifyConfig', {currentView:this.value}, function () {
+    $.post(_host + '/modifyConfig', {currentView:this.value}, function () {
         window.location.reload();
     }, 'json');
 });
@@ -47,19 +47,19 @@ $('span.del').click(function () {
 });
 
 
-$(document.body).append('<p id="prview"><img src=""></p>');
-$prviewObj = $('#prview');
-$('li').hover(function () {
-    var href = $(this).find('a').eq(0).attr('href'),
-        _href = href;
-    _href = _href.substring(_href.lastIndexOf('.') + 1);
-    if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
-        $prviewObj.show();
-        $prviewObj.find('img').eq(0).attr('src', href);
-    }
-}, function () {
-    $prviewObj.hide();
-});
+/*$(document.body).append('<p id="prview"><img src=""></p>');
+ $prviewObj = $('#prview');
+ $('li').hover(function () {
+ var href = $(this).find('a').eq(0).attr('href'),
+ _href = href;
+ _href = _href.substring(_href.lastIndexOf('.') + 1);
+ if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
+ $prviewObj.show();
+ $prviewObj.find('img').eq(0).attr('src', href);
+ }
+ }, function () {
+ $prviewObj.hide();
+ });*/
 
 
 //排序，按时间和大小

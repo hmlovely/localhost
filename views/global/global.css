@@ -144,6 +144,15 @@ body, h1 {
     margin-bottom: 100px;
 }
 
+#container li img.preview {
+    display: none;
+    width: 227px;
+}
+
+#container.water_pull li img.preview {
+    display: inline-block;
+}
+
 #prview {
     position: fixed;
     right: 1em;

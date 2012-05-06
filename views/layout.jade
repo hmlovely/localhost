@@ -46,6 +46,8 @@ html(lang="en")
             ul(id="sort-ul")
               - list.forEach(function(item,index){
                 li(time=item.time,size=item.size,class="list-li")
+                  - if(item.isImg)
+                    img.preview(src=item.href)
                   div(class="word")
                     - if(item.isDirecotory===true)
                        a.path(href=item.href,isdir="dir",filename=item.filename,path=item.path)=item.text

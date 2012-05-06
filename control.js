@@ -74,7 +74,8 @@ exports.GET = function (req, res) {
                                             time:_stats.ctime,
                                             size:_stats.size,
                                             filename:encodeURIComponent(item),
-                                            path:_path
+                                            path:_path,
+                                            isImg:/(png|jpg|jpeg|bmp|gif)/gi.test(item)
                                         });
 
                                     } catch (e) {
@@ -211,7 +212,7 @@ exports.POST = function (req, res) {
             var to = config[req.headers.host].path + path + '\\' + renamefile.to;
             origin = origin.replace(/\//gmi, '\\');
             to = to.replace(/\//gmi, '\\');
-            console.log(path,to,origin)
+            console.log(path, to, origin)
             fs.rename(origin, to, function (err) {
                 if (!err) {
                     res.end(JSON.stringify({success:true}));

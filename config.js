@@ -1,6 +1,7 @@
-exports.config={};
+﻿exports.config={};
 
 exports.config.localhost ={
+
 	"path": "E:\\"
 };
 
@@ -8,7 +9,8 @@ exports.config.local ={
 	"path": "E:\\hemin\\views"
 };
 
-exports.config.currentView ="green";
+exports.config.currentView ="default";
+
 
 exports.config.views ={
 	"default": {

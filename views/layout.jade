@@ -1,6 +1,6 @@
 !!! 5
 html(lang="en")
-    head
+    header
         title=pageTitle
         link(href="http://local/global/global.css",rel="stylesheet")
         each css in config.views[config.currentView].cssLink
@@ -44,11 +44,11 @@ html(lang="en")
                 a(href=returnParent.href) .. Parent Directory
             ul(id="sort-ul")
               - list.forEach(function(item){
-                li(id='list'+item.index,time=item.time,size=item.size,class="list-li",isdir=(function(){ return item.isDirecotory?'dir':'file' })(),filename=item.filename,path=item.path)
-                  - if(item.isImg)
-                    img.preview(src=item.href)
+                li(id='list'+item.getIndex(),time=item.getTime(),size=item.getSize(),class="list-li",isdir=(function(){ return item.isDirecotory()?'dir':'file' })(),filename=item.getFilename(),path=item.getPath())
+                  - if(item.isImg())
+                    img.preview(src=item.getHref())
                   div(class="word")
-                       a.path(href=item.href)=item.text
+                       a(class="path",href=item.getHref())=item.getText()
                   span(class="del",filename=item.href)
                        a(title="删除")
                             img(src="http://local/global/del.png")

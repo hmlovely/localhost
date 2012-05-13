@@ -1,23 +1,4 @@
-/**
- * Created by JetBrains WebStorm.
- * User: songsong
- * Date: 12-3-6
- * Time: 下午8:57
- * To change this template use File | Settings | File Templates.
- */
-
-
-
-
-/*
- $(document.body).append('<p style="text-align: center; background: #eee;" id="testContainer">此内容来自global.js中！</p>');
- $('#testContainer').css('opacity', '0').animate({
- padding:'20px',
- 'margin-top':'40px',
- opacity:1
- }, 300);
- */
-
+//防止浏览器报错，ie6没有console
 if (!window.console) {
     window.console = {
         log:function (str) {
@@ -26,7 +7,7 @@ if (!window.console) {
     }
 }
 
-var _host = 'http://' + window.location.host;
+var _host = 'http://' + window.location.host;//获取浏览器命名，就是指localhost
 
 /*改变配置信息*/
 $('#switch-views').bind('change', function () {
@@ -45,22 +26,6 @@ $('span.del').click(function () {
     }, 'text');
     return false;
 });
-
-
-/*$(document.body).append('<p id="prview"><img src=""></p>');
- $prviewObj = $('#prview');
- $('li').hover(function () {
- var href = $(this).find('a').eq(0).attr('href'),
- _href = href;
- _href = _href.substring(_href.lastIndexOf('.') + 1);
- if (/(png|jpg|jpeg|bmp|gif|ico)$/gi.test(_href) === true) {
- $prviewObj.show();
- $prviewObj.find('img').eq(0).attr('src', href);
- }
- }, function () {
- $prviewObj.hide();
- });*/
-
 
 //排序，按时间和大小
 var modSort = function (id, tag, prop) {
@@ -216,9 +181,6 @@ _list.onchange = function () {
 //瀑布流展示
 function Waterfall(param) {
     this.id = typeof param.container == 'string' ? document.getElementById(param.container) : param.container;
-    if (!this.id) {
-        return;
-    }
     this.colWidth = param.colWidth;
     this.colCount = param.colCount || 4;
     this.cls = param.cls && param.cls != '' ? param.cls : 'list-li';
@@ -237,6 +199,7 @@ Waterfall.prototype = {
         }
         return arr;
     },
+    //获取数组的最大值
     maxArr:function (arr) {
         var len = arr.length, temp = arr[0];
         for (var ii = 1; ii < len; ii++) {
@@ -246,15 +209,17 @@ Waterfall.prototype = {
         }
         return temp;
     },
+    //获取节点的margin-bottom值
     getMar:function (node) {
         var dis = 0;
-        if (node.currentStyle) {
+        if (node.currentStyle) {//ie
             dis = parseInt(node.currentStyle.marginBottom);
-        } else if (document.defaultView) {
+        } else if (document.defaultView) {//标准浏览器下
             dis = parseInt(document.defaultView.getComputedStyle(node, null).marginBottom);
         }
         return dis;
     },
+    //获取最小列高的索引
     getMinCol:function (arr) {
         var ca = arr, cl = ca.length, temp = ca[0], minc = 0;
         for (var ci = 0; ci < cl; ci++) {
@@ -265,18 +230,19 @@ Waterfall.prototype = {
         }
         return minc;
     },
+    //初始化瀑布流
     init:function () {
         var _this = this;
-        var col = [], //列高
-            iArr = [];//索引
+        var col = []; //列高
         var nodes = _this.getByClass(_this.cls, _this.id), len = nodes.length;
         for (var i = 0; i < _this.colCount; i++) {
             col[i] = 0;
         }
         for (var i = 0; i < len; i++) {
-            nodes[i].h = nodes[i].offsetHeight + _this.getMar(nodes[i]);
-            iArr[i] = i;
+            nodes[i].h = nodes[i].offsetHeight + _this.getMar(nodes[i]);//获取节点的真实高度
+            //iArr[i] = i;
         }
+        //判断每个节点的位置在哪
         for (var i = 0; i < len; i++) {
             var ming = _this.getMinCol(col);
             nodes[i].style.left = ming * _this.colWidth + "px";
@@ -287,6 +253,7 @@ Waterfall.prototype = {
     }
 };
 
+//三种展现方式的切换按钮
 document.getElementById("dis_list").onclick = function () {
     document.getElementById("container").className = "";
     var lis = document.getElementById("sort-ul").getElementsByTagName("li"), len = lis.length;

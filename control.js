@@ -1,13 +1,6 @@
-/**
- * Created by JetBrains PhpStorm.
- * User: hemin
- * Date: 12-2-18
- * Time: 13:53
- * To change this template use File | Settings | File Templates.
- * TODO:http://club.cnodejs.org/topic/4f16442ccae1f4aa27001071-后续需兼容大文件
- */
 
 "use strict";
+//加载模块
 var route = require('./config'),
     config = route.config,
     url = require('url'),
@@ -19,6 +12,8 @@ var route = require('./config'),
     os = require('os'),
     isWin = /(Windows)/i.test(os.type()),
     exec = require('child_process').exec;
+
+var f = require('./model/File');
 
 exports.init = function (req, res) {
     var method = req.method;
@@ -35,12 +30,8 @@ exports.GET = function (req, res) {
         res.end();
         return;
     }
-    //搜索功能
-
-
     var root = currentConfig.path;
     root += (req.url);
-
     var extname = path.extname(root);
     extname = extname !== '' ? extname.substring(1, extname.length) : '';
     root = decodeURIComponent(root);
@@ -58,7 +49,7 @@ exports.GET = function (req, res) {
                                 files.forEach(function (item, index) {
                                     try {
                                         var _stats = fs.statSync(root + '/' + item);
-                                        data.list.push({
+                                        data.list.push(new f.file_obj({
                                             href:_path + '/' + encodeURIComponent(item),
                                             text:'【' + (_stats.isDirectory() ? 'DIR' : 'File') + '】' + item,
                                             isDirecotory:_stats.isDirectory(),
@@ -68,10 +59,10 @@ exports.GET = function (req, res) {
                                             path:_path,
                                             isImg:/(png|jpg|jpeg|bmp|gif)/gi.test(item),
                                             index:index
-                                        });
+                                        }));
 
                                     } catch (e) {
-                                        console.log('Error:' + item);
+                                        //console.log('Error:' + item);
                                     }
                                 });
                             }
@@ -117,6 +108,7 @@ exports.GET = function (req, res) {
                             var fn = jade.compile(fs.readFileSync('./views/layout.jade'));
                             data.dataString = JSON.stringify(data);
                             res.end(fn(data));
+
                         }
                     )
                 }
@@ -225,5 +217,3 @@ exports.saveConfig = function () {
     });
     fs.writeFile('config.js', _tempObj.join('\r\n\r\n'));
 };
-
-

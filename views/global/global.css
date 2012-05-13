@@ -133,10 +133,11 @@ body, h1 {
     width: 960px;
     font-size: 14px;
     margin: 0 auto;
-    border-radius: 5px 5px 5px 5px;
     background: #fff;
     margin-top: 30px;
     margin-bottom: 100px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 #container li img.preview {
@@ -204,9 +205,10 @@ body, h1 {
 
 .dis_mode ul {
     background: #fff;
-    width: 930px;
+    width: 932px;
     position: absolute;
-    border-radius: 5px 5px 5px 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .dis_mode li {
